@@ -1,0 +1,26 @@
+<form [formGroup]="group_form" (ngSubmit)="addGroup()">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Group
+                </div>
+                <div class="card-body">
+                    <div class="col-sm-12">
+                        <div class="form-group">       
+                            <label>Nama Group</label>
+                            <input type="text" class="form-control" formControlName="name">                            
+                            <div *ngIf="group_form.get('name').touched && group_form.get('name').hasError('required')" class="alert alert-danger">
+                                Name Group is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+                <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+            </div>
+        </div>
+    </div>
+</div>
+</form>
