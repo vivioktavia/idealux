@@ -41,22 +41,26 @@ export const routes: Routes = [
             {
                 path: 'master',
                 loadChildren: './master/master.module#MasterModule'
-            }
-        ]
-    },
-    {
-        path: 'pages',
-        component: SimpleLayoutComponent,
-        data: {
-            title: 'Pages'
-        },
-        children: [
+            },
             {
-                path: '',
-                loadChildren: './pages/pages.module#PagesModule',
+                path: 'data',
+                loadChildren: './data/data.module#DataModule'
             }
         ]
     }
+    // {
+    //     path: 'pages',
+    //     component: SimpleLayoutComponent,
+    //     data: {
+    //         title: 'Pages'
+    //     },
+    //     children: [
+    //         {
+    //             path: '',
+    //             loadChildren: './pages/pages.module#PagesModule',
+    //         }
+    //     ]
+    // }
 ];
 
 @NgModule({
