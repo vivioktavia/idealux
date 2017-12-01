@@ -20,6 +20,11 @@ import {AppRoutingModule} from './app.routing';
 import {FullLayoutComponent} from './layouts/full-layout.component';
 import {SimpleLayoutComponent} from './layouts/simple-layout.component';
 
+import { LoginComponent } from './login/login.component';
+import { RouterModule } from '@angular/router';
+import { AuthService } from './services/auth.service';
+import { HttpModule } from '@angular/http';
+
 @NgModule({
     imports: [
         BrowserModule,
@@ -28,7 +33,11 @@ import {SimpleLayoutComponent} from './layouts/simple-layout.component';
         TabsModule.forRoot(),
         ChartsModule,
         FormsModule,
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        HttpModule,
+        RouterModule.forRoot([
+          { path: 'login', component: LoginComponent }
+        ])
     ],
     declarations: [
         AppComponent,
@@ -37,12 +46,10 @@ import {SimpleLayoutComponent} from './layouts/simple-layout.component';
         NAV_DROPDOWN_DIRECTIVES,
         BreadcrumbsComponent,
         SIDEBAR_TOGGLE_DIRECTIVES,
-        AsideToggleDirective
+        AsideToggleDirective,
+        LoginComponent
     ],
-    providers: [{
-        provide: LocationStrategy,
-        useClass: HashLocationStrategy
-    }],
+    providers: [AuthService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
