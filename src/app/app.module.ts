@@ -24,6 +24,7 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { HttpModule } from '@angular/http';
+import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
     imports: [
@@ -37,7 +38,8 @@ import { HttpModule } from '@angular/http';
         HttpModule,
         RouterModule.forRoot([
           { path: 'login', component: LoginComponent }
-        ])
+        ]),
+        NgxDatatableModule
     ],
     declarations: [
         AppComponent,

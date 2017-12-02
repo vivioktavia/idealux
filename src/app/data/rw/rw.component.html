@@ -1,4 +1,4 @@
-<form [formGroup]="rw_form" (ngSubmit)="addRw()">
+<!-- <form [formGroup]="rw_form" (ngSubmit)="addRw()">
     <div class="row">
         <div class="col-sm-6">
             <div class="card">
@@ -30,3 +30,27 @@
         </div>
     </div>
 </form>
+ -->
+
+<div id="ngx-datatable" class="page-layout simple fullwidth" fusePerfectScrollbar>
+  <div class="content p-24">
+<!--     <div class="button-row">
+      <button mat-raised-button color="accent"
+        (click)="openDialogDetail()">
+        Add New
+      </button>
+      <button mat-raised-button color="accent"
+        (click)="openDialogDetailEdit()">
+        Edit
+      </button>
+      <button mat-raised-button color="warn"
+        (click)="openDialogDetailDelete()">
+        Delete
+      </button>
+    </div> -->
+    <ngx-datatable class="material"
+      [rows]="rws"
+      [columns]="columns">
+    </ngx-datatable>
+  </div>
+</div>

@@ -3,19 +3,23 @@ import {Http, Response, Headers, RequestOptions, RequestMethod} from '@angular/h
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import {Rw} from './rw';
+import {Rw} from '../models/rw';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 
 // Service for products data.
 export class RwService {
-
+    private url: string = environment.BASE_URL + "/rws/";
+    private headers: Headers = new Headers({
+        'Content-Type': 'application/json',
+        'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'
+    });
     constructor(private _http: Http) {}
 
-    readRw(): Observable<Rw[]> {
-        return this._http
-            .get("http://young-eyrie-51496.herokuapp.com/rws/?format=json")
-            .map(res => res.json());
+    readRw() {
+        return this._http.get(this.url)
+        .map(res => res.json());
     }
 
     addRw(rw){
