@@ -1,6 +1,7 @@
-export class Group {
+export class RT {
     constructor(    
-        public name: string
+        public rtNo: string,
+        public rwNo : string
     ){}
     
 }

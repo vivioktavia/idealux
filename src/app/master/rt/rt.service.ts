@@ -3,22 +3,22 @@ import {Http, Response, Headers, RequestOptions, RequestMethod} from '@angular/h
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import {Group} from './group';
+import {RT} from './rt';
 
 @Injectable()
 
 // Service for products data.
-export class GroupService {
+export class RTService {
 
     constructor(private _http: Http) {}
 
-    readGroup(): Observable<Group[]> {
+    readGroup(): Observable<RT[]> {
         return this._http
             .get("http://young-eyrie-51496.herokuapp.com/group/?format=json")
             .map(res => res.json());
     }
 
-    addGroup(group){
+    addRT(group){
         console.log(group);
 //        this.readGroup();
         let headers = new Headers({'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'});

@@ -1,4 +1,4 @@
-<form [formGroup]="group_form" (ngSubmit)="addGroup()">
+<form [formGroup]="rt_form" (ngSubmit)="addRT()">
     <div class="row">
         <div class="col-sm-6">
             <div class="card">
@@ -8,10 +8,10 @@
                 <div class="card-body">
                     <div class="col-sm-12">
                         <div class="form-group">       
-                            <label>Nama Group</label>
-                            <input type="text" class="form-control" formControlName="name">                            
-                            <div *ngIf="group_form.get('name').touched && group_form.get('name').hasError('required')" class="alert alert-danger">
-                                Name Group is required.
+                            <label>RT No</label>
+                            <input type="text" class="form-control" formControlName="rtNo">                            
+                            <div *ngIf="rt_form.get('rtNo').touched && rt_form.get('rtNo').hasError('required')" class="alert alert-danger">
+                                RT No is required.
                         </div>
                     </div>
                 </div>
