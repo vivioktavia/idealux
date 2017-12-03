@@ -4,6 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 // Layouts
 import {FullLayoutComponent} from './layouts/full-layout.component';
 import {SimpleLayoutComponent} from './layouts/simple-layout.component';
+import { AuthGuardService } from './services/auth-guard.service';
 
 export const routes: Routes = [
     {
@@ -14,6 +15,7 @@ export const routes: Routes = [
     {
         path: '',
         component: FullLayoutComponent,
+        // canActivate: [AuthGuardService],
         data: {
             title: 'Home'
         },
@@ -24,19 +26,6 @@ export const routes: Routes = [
             }
         ]
     }
-    // {
-    //     path: 'pages',
-    //     component: SimpleLayoutComponent,
-    //     data: {
-    //         title: 'Pages'
-    //     },
-    //     children: [
-    //         {
-    //             path: '',
-    //             loadChildren: './pages/pages.module#PagesModule',
-    //         }
-    //     ]
-    // }
 ];
 
 @NgModule({

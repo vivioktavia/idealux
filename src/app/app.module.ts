@@ -24,6 +24,7 @@ import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { HttpModule } from '@angular/http';
+import { AuthGuardService  } from './services/auth-guard.service';
 
 @NgModule({
     imports: [
@@ -49,7 +50,7 @@ import { HttpModule } from '@angular/http';
         AsideToggleDirective,
         LoginComponent
     ],
-    providers: [AuthService],
+    providers: [AuthService, AuthGuardService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}
