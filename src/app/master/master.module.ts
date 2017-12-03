@@ -4,6 +4,9 @@ import {HttpModule} from '@angular/http';
 
 import {MasterRoutingModule} from './master-routing.module';
 import {GroupComponent} from './group/group.component';
+import {RTComponent} from './rt/rt.component';
+import {RWComponent} from './rw/rw.component';
+import {DataTablesModule} from 'angular-datatables';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
@@ -12,10 +15,13 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
-        HttpModule
+        HttpModule,
+        DataTablesModule
     ],
     declarations: [
-        GroupComponent
+        GroupComponent,
+        RTComponent,
+        RWComponent
     ]
 })
 export class MasterModule {}

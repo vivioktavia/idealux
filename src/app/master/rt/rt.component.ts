@@ -1,29 +1,29 @@
 import {Component} from '@angular/core';
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
-import {GroupService} from './group.service';
+import {RTService} from './rt.service';
 
 @Component({
-    templateUrl: 'group.component.html',
-    providers: [GroupService]
+    templateUrl: 'rt.component.html',
+    providers: [RTService]
 })
 
-export class GroupComponent {
+export class RTComponent {
     url: string = 'https://young-eyrie-51496.herokuapp.com'
-    group_form: FormGroup;
+    rt_form: FormGroup;
     constructor(
-        private groupService : GroupService,
+        private rtService : RTService,
         formBuilder: FormBuilder,
     ) {
-        this.group_form = formBuilder.group({
+        this.rt_form = formBuilder.group({
             name: ["", Validators.required]
         });
     }
 
-    addGroup(){
-        this.groupService.addGroup(this.group_form.value).subscribe(
-                 group => {
+    addRT(){
+        this.rtService.addRT(this.rt_form.value).subscribe(
+                 rt => {
                     // show an alert to tell the user if product was created or not
-                    console.log(group);
+                    console.log(rt);
  
                     // go back to list of products
 //                    this.readGroup();

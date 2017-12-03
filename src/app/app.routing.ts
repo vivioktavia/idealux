@@ -18,33 +18,9 @@ export const routes: Routes = [
             title: 'Home'
         },
         children: [
-//            {
-//                path: 'dashboard',
-//                loadChildren: './dashboard/dashboard.module#DashboardModule'
-//            },
-//            {
-//                path: 'components',
-//                loadChildren: './components/components.module#Components'
-//            },
-//            {
-//                path: 'icons',
-//                loadChildren: './icons/icons.module#IconsModule'
-//            },
-//            {
-//                path: 'widgets',
-//                loadChildren: './widgets/widgets.module#WidgetsModule'
-//            },
-//            {
-//                path: 'charts',
-//                loadChildren: './chartjs/chartjs.module#ChartJSModule'
-//            },
             {
                 path: 'master',
                 loadChildren: './master/master.module#MasterModule'
-            },
-            {
-                path: 'data',
-                loadChildren: './data/data.module#DataModule'
             }
         ]
     }

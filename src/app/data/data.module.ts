@@ -5,7 +5,6 @@ import {HttpModule} from '@angular/http';
 import {DataRoutingModule} from './data-routing.module';
 import {RwComponent} from './rw/rw.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 
 @NgModule({
     imports: [
@@ -13,8 +12,7 @@ import { NgxDatatableModule } from '@swimlane/ngx-datatable';
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
-        HttpModule,
-        NgxDatatableModule
+        HttpModule
     ],
     declarations: [
         RwComponent

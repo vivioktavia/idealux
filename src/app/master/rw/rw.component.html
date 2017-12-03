@@ -1,26 +1,27 @@
-<form [formGroup]="group_form" (ngSubmit)="addGroup()">
+<div class="card">
     <div class="row">
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-header">
-                    <i class="fa fa-align-justify"></i> Group
-                </div>
-                <div class="card-body">
-                    <div class="col-sm-12">
-                        <div class="form-group">       
-                            <label>Nama Group</label>
-                            <input type="text" class="form-control" formControlName="name">                            
-                            <div *ngIf="group_form.get('name').touched && group_form.get('name').hasError('required')" class="alert alert-danger">
-                                Name Group is required.
-                        </div>
-                    </div>
-                </div>
+        <div class ="col-sm-12">
+            <div class="card-header">
+                RW
             </div>
-            <div class="card-footer">
-                <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
-                <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+            <div class="card-body">
+                <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                       <thead>
+                        <tr>
+                            <th>Action</th>
+                            <th>No RW</th>
+                            <th>RW Desc</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let rw of rws">
+                            <td><a href="{{this.router.url}}/{{rw.rwNo}}">Add</a> | <a href="{{this.router.url}}/{{rw.rwNo}}">Edit</a> | <a href="{{this.router.url}}/{{rw.rwNo}}">Delete</a></td>
+                            <td>{{ rw.rwNo }}</td>
+                            <td>{{ rw.rwDescs }}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
-</form>
