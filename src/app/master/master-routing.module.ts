@@ -24,7 +24,11 @@ const routes: Routes = [
                 component: RWComponent,
                 data: {
                     title: 'RW'
-                }
+                },
+                children: [
+                    {path: "new", component: RWComponent},
+                    {path: ":id", component: RWComponent}
+                ]
             },
             {
                 path: 'rt',
