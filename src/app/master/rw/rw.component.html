@@ -1,35 +1,35 @@
-    <div *ngIf="method == '2'">
-        <div class="card" >
-            <div class="row">
-                <div class ="col-sm-12">
-                    <div class="card-header">
-                        RW
-                    </div>
-                    <div class="card-body">
-                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-                               <thead>
-                                <tr>
-                                    <th>Action</th>
-                                    <th>No RW</th>
-                                    <th>RW Desc</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr *ngFor="let rw of rws">
-                                    <td><button type="button" class="btn-link" (click)="callForm()">Add</button> | <button type="button" (click)="callForm(rw.id)" class="btn-link">Edit</button> | <button type="button" class="btn-link" (click)="deleteRW(rw.id)">Delete</button></td>
-                                    <td>{{ rw.rwNo }}</td>
-                                    <td>{{ rw.rwDescs }}</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+<div *ngIf="method == ACTION_LIST">
+    <div class="card" >
+        <div class="row">
+            <div class ="col-sm-12">
+                <div class="card-header">
+                    RW
+                </div>
+                <div class="card-body">
+                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                           <thead>
+                            <tr>
+                                <th>Action</th>
+                                <th>No RW</th>
+                                <th>RW Desc</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let rw of rws">
+                                <td><button type="button" class="btn-link" (click)="callForm()">Add</button> | <button type="button" (click)="callForm(rw.id)" class="btn-link">Edit</button> | <button type="button" class="btn-link" (click)="deleteRW(rw.id)">Delete</button></td>
+                                <td>{{ rw.rwNo }}</td>
+                                <td>{{ rw.rwDescs }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div *ngIf="method == '1' || method == '0'">
-        <form [formGroup]="rw_form" (ngSubmit)="addRW()">
+<div *ngIf="method == ACTION_UPDATE || method == ACTION_ADD">
+        <form [formGroup]="rw_form" (ngSubmit)="saveAdd()">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="card">

@@ -12,31 +12,11 @@ const routes: Routes = [
             title: 'Master'
         },
         children: [
-            {
-                path: 'group',
-                component: GroupComponent,
-                data: {
-                    title: 'Group'
-                }
-            },
-            {
-                path: 'rw',
-                component: RWComponent,
-                data: {
-                    title: 'RW'
-                },
-                children: [
-                    {path: "new", component: RWComponent},
-                    {path: ":id", component: RWComponent}
-                ]
-            },
-            {
-                path: 'rt',
-                component: RTComponent,
-                data: {
-                    title: 'RT'
-                }
-            }
+            {path: 'group', component: GroupComponent, data: {title: 'Group'}},
+            {path: 'rw', component: RWComponent, data: {title: 'RW'}},
+            {path: 'rw/:id', component: RWComponent, data: {title: 'RW'}},
+            {path: 'rw/new', component: RWComponent, data: {title: 'RW'}},
+            {path: 'rt', component: RTComponent, data: {title: 'RT'}}
         ]
     }
 ];

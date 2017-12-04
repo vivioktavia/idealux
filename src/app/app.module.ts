@@ -1,6 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import {AppComponent} from './app.component';
@@ -35,10 +34,10 @@ import { AuthGuardService  } from './services/auth-guard.service';
         ChartsModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule,
-        RouterModule.forRoot([
-          { path: 'login', component: LoginComponent }
-        ])
+        HttpModule
+//        RouterModule.forRoot([
+//          { path: 'login', component: LoginComponent }
+//        ])
     ],
     declarations: [
         AppComponent,

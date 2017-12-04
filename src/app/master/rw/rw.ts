@@ -1,7 +1,7 @@
 export class RW {
     constructor( 
         public id : number,
-        public rtNo: string,
+        public rwNo: string,
         public rwDescs : string
     ){}
     

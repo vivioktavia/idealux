@@ -3,7 +3,7 @@ import {Routes, RouterModule} from '@angular/router';
 
 // Layouts
 import {FullLayoutComponent} from './layouts/full-layout.component';
-import { AuthGuardService } from './services/auth-guard.service';
+import {AuthGuardService} from './services/auth-guard.service';
 
 
 export const routes: Routes = [
@@ -15,7 +15,6 @@ export const routes: Routes = [
     {
         path: '',
         component: FullLayoutComponent,
-        // canActivate: [AuthGuardService],
         data: {
             title: 'Home'
         },
@@ -29,7 +28,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes, {useHash: true})],
     exports: [RouterModule]
 })
 export class AppRoutingModule {}
