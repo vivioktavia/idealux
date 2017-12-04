@@ -5,11 +5,14 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise';
 import {RW} from './rw';
+import {environment} from '../../../environments/environment';
 
 @Injectable()
 
 // Service for products data.
 export class RWService {
+    private url: string = environment.BASE_URL + "/rws/";
+    private token: string = environment.token;
 
     constructor(private _http: Http) {}
 
@@ -20,21 +23,21 @@ export class RWService {
         let options = new RequestOptions({method: RequestMethod.Post, headers: headers});
         console.log(rw)
         return this._http.post(
-            "http://young-eyrie-51496.herokuapp.com/rws/",
+            this.url,
             rw,
             options
         ).map(res => res.json()).catch(this.handleError);;
     }
 
     getRWByNo(id): Promise<RW> {
-        return this._http.get('http://young-eyrie-51496.herokuapp.com/rws/' + id + '/')
+        return this._http.get(this.url + id + '/')
             .toPromise()
             .then(response => response.json() || {} as RW)
             .catch(this.handleError);
     }
     
     updateRW(url, rw) {
-        let headers = new Headers({'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'});
+        let headers = new Headers({'Authorization': 'Token ' + this.token});
         headers.append("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Headers', 'Content-Type');
@@ -48,14 +51,16 @@ export class RWService {
     }
 
     getRWList(): Observable<RW[]> {
-        return this._http.get('http://young-eyrie-51496.herokuapp.com/rws/')
+        let headers = new Headers({'Authorization': 'Token ' + this.token});
+        let options = new RequestOptions({headers: headers});
+        return this._http.get(this.url, options)
             .map(this.extractData)
     }
 
     deleteRW(url) {
-        let headers = new Headers({'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'});
+        let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
-        return this._http.delete("http://young-eyrie-51496.herokuapp.com/rws/" + url, options);
+        return this._http.delete(this.url + url, options);
         //        return this._http.delete(url);
     }
 
