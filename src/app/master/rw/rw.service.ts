@@ -36,15 +36,16 @@ export class RWService {
             .catch(this.handleError);
     }
     
-    updateRW(url, rw) {
-        let headers = new Headers({'Authorization': 'Token ' + this.token});
+    updateRW(id, rw) {
+        // let headers = new Headers({'Authorization': 'Token ' + this.token});
+        let headers = new Headers({'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'});
         headers.append("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
         headers.append('Access-Control-Allow-Origin', '*');
         headers.append('Access-Control-Allow-Headers', 'Content-Type');
         headers.append("Access-Control-Allow-Credentials", "true");
         let options = new RequestOptions({method: RequestMethod.Post, headers: headers});
         return this._http.put(
-            url,
+            'http://young-eyrie-51496.herokuapp.com/rws/' + id ,
             rw,
             options
         ).map(res => res.json()).catch(this.handleErrorObservable);;

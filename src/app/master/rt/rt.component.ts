@@ -44,8 +44,7 @@ export class RTComponent extends BaseComponent implements OnInit, IBaseInterface
         this.url = "master/rt";
     }
 
-    ngOnInit(): void {
-        
+    ngOnInit(): void {        
         this.init();
         if (this.method == this.ACTION_UPDATE) {
             this.rtService.getRTByNo(this.id).then(data => {
