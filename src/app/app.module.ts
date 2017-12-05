@@ -17,7 +17,6 @@ import {AppRoutingModule} from './app.routing';
 
 // Layouts
 import {FullLayoutComponent} from './layouts/full-layout.component';
-import {SimpleLayoutComponent} from './layouts/simple-layout.component';
 
 import { LoginComponent } from './login/login.component';
 import { RouterModule } from '@angular/router';
@@ -46,7 +45,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     declarations: [
         AppComponent,
         FullLayoutComponent,
-        SimpleLayoutComponent,
         NAV_DROPDOWN_DIRECTIVES,
         BreadcrumbsComponent,
         SIDEBAR_TOGGLE_DIRECTIVES,

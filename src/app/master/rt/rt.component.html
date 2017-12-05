@@ -6,7 +6,7 @@
                     RT<button type="button" class="btn-link" (click)="callForm()">Add</button>
                 </div>
                 <div class="card-body">
-                    
+
                     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                            <thead>
                             <tr>
@@ -16,8 +16,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let rw of rws">
-                                <td><button type="button" (click)="callForm(rw.id)" class="btn-link">Edit</button> | <button type="button" class="btn-link" (click)="saveDelete(rw.id)">Delete</button></td>
+                            <tr *ngFor="let rt of rts">
+                                <td><button type="button" (click)="callForm(rt.id)" class="btn-link">Edit</button> | <button type="button" class="btn-link" (click)="saveDelete(rt.id)">Delete</button></td>
                                 <td>{{ rt.rtNo }}</td>
                                 <td>{{ rt.rwNo }}</td>
                             </tr>
@@ -48,14 +48,14 @@
                         </div>
                         <div class="form-group">       
                             <label>RW No</label>
-                            <select formControlName="rwNo">
+                            <select  class="form-control" formControlName="rw">
                                 <option *ngFor="let rw of rws"
-                                    [value]="rw.id">
+                                    [value]="rw.id" [selected]= "rw.id == rt_form.get('rw').value">
                                     {{rw.rwNo}}
                             </option>
                         </select>                          
-                        <div *ngIf="rt_form.get('rwNo').touched && rw_form.get('rwNo').hasError('required')" class="alert alert-danger">
-                            Rw Descs is required.
+                        <div *ngIf="rt_form.get('rw').touched && rt_form.get('rw').hasError('required')" class="alert alert-danger">
+                            Rw No is required.
                     </div>
                 </div>
             </div>

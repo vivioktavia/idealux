@@ -6,6 +6,7 @@ import {MasterRoutingModule} from './master-routing.module';
 import {GroupComponent} from './group/group.component';
 import {RTComponent} from './rt/rt.component';
 import {RWComponent} from './rw/rw.component';
+import {KKComponent} from './kk/kk.component';
 import {DataTablesModule} from 'angular-datatables';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -21,7 +22,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
     declarations: [
         GroupComponent,
         RTComponent,
-        RWComponent
+        RWComponent,
+        KKComponent
     ]
 })
 export class MasterModule {}

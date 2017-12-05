@@ -1,4 +1,4 @@
-import {Rt} from './rt';
+import {RT} from './rt';
 import {Block} from './block'
 export class Lot {
     constructor(    
@@ -7,7 +7,7 @@ export class Lot {
         public descs : string,
         public landArea : number,
         public buildArea : number,
-        public rt : Rt,
+        public rt : RT,
         public block : Block
     ){}
     

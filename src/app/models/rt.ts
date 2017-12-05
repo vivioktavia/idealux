@@ -1,7 +1,9 @@
-export class Rt {
+export class RT {
     constructor(    
-        public id: number,
-        public rtNo : string
+        public rw : string,
+        public id : string,
+        public rtNo: string,
+        public rwNo : string
     ){}
     
 }

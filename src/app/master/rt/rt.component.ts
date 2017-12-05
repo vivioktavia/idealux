@@ -6,29 +6,34 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
-import {RTService} from './rt.service';
-import {Observable} from 'rxjs/Observable';
-import {RT} from './rt';
+import {RTService} from '../../services/rt.service';
+import {RWService} from '../../services/rw.service';
 
+import {Observable} from 'rxjs/Observable';
+import {RT} from '../../models/rt';
+import {RW} from '../../models/rw';
 
 
 @Component({
     templateUrl: 'rt.component.html',
-    providers: [RTService]
+    providers: [RTService, RWService]
 })
 
-export class RTComponent extends BaseComponent implements OnInit, IBaseInterface{
-    
+export class RTComponent extends BaseComponent implements OnInit, IBaseInterface {
+
     rt_form: FormGroup;
     result: Observable<RT[]>;
+    rwResult: Observable<RW[]>;
     rts: RT[] = [];
+    rws: RW[] = [];
     data: RT;
-    
+
     constructor(
         private rtService: RTService,
+        private rwService: RWService,
         private routerRT: Router,
         private routeRT: ActivatedRoute,
-        private toastrRT : ToastrService,
+        private toastrRT: ToastrService,
         private formBuilder: FormBuilder
     ) {
         super(routerRT, routeRT, toastrRT)
@@ -38,26 +43,34 @@ export class RTComponent extends BaseComponent implements OnInit, IBaseInterface
         this.IService = this
         this.rt_form = formBuilder.group({
             rtNo: ["", Validators.required],
-            rwNo: ["", Validators.required]
+            rw: ["", Validators.required]
         });
-        
+
         this.url = "master/rt";
     }
 
-    ngOnInit(): void {        
+    ngOnInit(): void {
         this.init();
-        if (this.method == this.ACTION_UPDATE) {
-            this.rtService.getRTByNo(this.id).then(data => {
-                this.data = data;
-                this.rt_form = this.formBuilder.group({
-                    rtNo: [this.data.rtNo, Validators.required],
-                    rwNo: [this.data.rwNo, Validators.required]
+        if (this.method == this.ACTION_UPDATE || this.method == this.ACTION_ADD) {
+            if (this.method == this.ACTION_UPDATE) {
+                this.rtService.getRTByNo(this.id).then(data => {
+                    this.data = data;
+                    this.rt_form = this.formBuilder.group({
+                        rtNo: [this.data.rtNo, Validators.required],
+                        rw: [this.data.rw, Validators.required]
+                    });
                 });
-            });
+            }
+            this.getRWList();
         } else {
             this.result = this.rtService.getRTList();
             this.result.subscribe(val => {this.rts = val; this.dtTrigger.next()});
         }
+    }
+
+    getRWList() {
+        this.rwResult = this.rwService.getRWList();
+        this.rwResult.subscribe(val => {this.rws = val});
     }
 
     saveAddItem(): void {
@@ -77,8 +90,8 @@ export class RTComponent extends BaseComponent implements OnInit, IBaseInterface
             this.rtService.deleteRT(url).subscribe(
                 error => console.log(error)
             );
-//            this.result = this.rwService.getRWList();
-//            this.result.subscribe(val => {this.rws = val; this.dtTrigger.next()});
+            //            this.result = this.rwService.getRWList();
+            //            this.result.subscribe(val => {this.rws = val; this.dtTrigger.next()});
         };
     }
 

@@ -6,9 +6,9 @@ import {ToastrService} from 'ngx-toastr';
 
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 
-import {RWService} from './rw.service';
+import {RWService} from '../../services/rw.service';
 import {Observable} from 'rxjs/Observable';
-import {RW} from './rw';
+import {RW} from '../../models/rw';
 
 
 @Component({

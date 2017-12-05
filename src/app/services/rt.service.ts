@@ -3,59 +3,59 @@ import {Http, Response, Headers, RequestOptions, RequestMethod} from '@angular/h
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/toPromise';
-import {RW} from './rw';
-import {environment} from '../../../environments/environment';
+import {RT} from '../models/rt';
+import {environment} from '../../environments/environment';
 
 @Injectable()
 
 // Service for products data.
-export class RWService {
-    private url: string = environment.BASE_URL + "/rws/";
+export class RTService {
+
+    private url: string = environment.BASE_URL + "/rts/";
     private token: string = environment.token;
 
     constructor(private _http: Http) {}
 
-    addRW(rw) {
-        let headers = new Headers({'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'});
+    addRT(rt) {
+        let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({method: RequestMethod.Post, headers: headers});
-        console.log(rw)
         return this._http.post(
             this.url,
-            rw,
+            rt,
             options
         ).map(res => res.json()).catch(this.handleError);;
     }
 
-    getRWByNo(id): Promise<RW> {
-        return this._http.get(this.url + id + '/')
+    getRTByNo(id): Promise<RT> {
+        let headers = new Headers({'Authorization': 'Token ' + this.token});
+        let options = new RequestOptions({headers: headers});
+        return this._http.get(this.url + id + '/', options)
             .toPromise()
-            .then(response => response.json() || {} as RW)
+            .then(response => response.json() || {} as RT)
             .catch(this.handleError);
     }
 
-    updateRW(id, rw) {
-        // let headers = new Headers({'Authorization': 'Token ' + this.token});
-        let headers = new Headers({'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'});
+    updateRT(id, rt) {
+        let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
         return this._http.put(
-            'http://young-eyrie-51496.herokuapp.com/rws/' + id + "/",
-            rw,
+            this.url + id + '/',
+            rt,
             options
         ).map(res => res.json()).catch(this.handleErrorObservable);;
     }
 
-    getRWList(): Observable<RW[]> {
+    getRTList(): Observable<RT[]> {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
         return this._http.get(this.url, options)
             .map(this.extractData)
     }
 
-    deleteRW(url) {
+    deleteRT(id) {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
-        return this._http.delete("http://young-eyrie-51496.herokuapp.com/rws/" + url + "/", options);
+        return this._http.delete(this.url + id, options);
     }
 
     private handleErrorObservable(error: Response | any) {
