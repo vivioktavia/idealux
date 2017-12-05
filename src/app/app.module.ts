@@ -24,6 +24,8 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from './services/auth.service';
 import { HttpModule } from '@angular/http';
 import { AuthGuardService  } from './services/auth-guard.service';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
     imports: [
@@ -34,7 +36,9 @@ import { AuthGuardService  } from './services/auth-guard.service';
         ChartsModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpModule
+        HttpModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot(),
 //        RouterModule.forRoot([
 //          { path: 'login', component: LoginComponent }
 //        ])

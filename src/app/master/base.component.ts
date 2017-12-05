@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {Subject} from 'rxjs/Subject';
 import {IBaseInterface} from './base.interface';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
     template: ""
@@ -22,12 +23,15 @@ export class BaseComponent {
     url: string;
     id: string;
 
+
     constructor(
-        protected router: Router,
-        protected route: ActivatedRoute
+        protected router?: Router,
+        protected route?: ActivatedRoute,
+        protected toastr?: ToastrService
     ) {}
 
     init() {
+
         this.dtOptions = {
             pagingType: 'full_numbers',
             pageLength: 10
@@ -48,30 +52,35 @@ export class BaseComponent {
 
     callForm(id?) {
         if (id) {
-            this.router.navigate(['master/rw', id]);
+            this.router.navigate([this.url, id]);
         } else {
-            this.router.navigate(['/master/rw/new']);
+            this.router.navigate([this.url + "/" + this.NEW_CODE]);
         }
     }
-    
-    save(){
-        if (this.method == this.ACTION_ADD){
+
+    save() {
+        if (this.method == this.ACTION_ADD) {
             this.saveAdd();
-        }else if(this.method == this.ACTION_UPDATE){
+        } else if (this.method == this.ACTION_UPDATE) {
             this.saveUpdate();
         }
     }
 
     saveAdd() {
         this.IService.saveAddItem();
+        this.toastr.success("Success", "Data Anda Berhasil Di simpan");
+        this.router.navigate([this.url]);
     }
 
     saveUpdate() {
         this.IService.saveUpdateItem(this.id);
+        this.toastr.success("Data Anda Berhasil Di simpan", "Success");
+        this.router.navigate([this.url]);
     }
 
-    saveDelete() {
-        this.IService.saveDeleteItem(this.id);
+    saveDelete(id) {
+        this.IService.saveDeleteItem(id);
+        this.toastr.success("Data Anda Berhasil Di simpan", "Success");
     }
 
 }

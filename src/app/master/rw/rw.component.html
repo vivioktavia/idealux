@@ -16,7 +16,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let rw of rws">
-                                <td><button type="button" class="btn-link" (click)="callForm()">Add</button> | <button type="button" (click)="callForm(rw.id)" class="btn-link">Edit</button> | <button type="button" class="btn-link" (click)="deleteRW(rw.id)">Delete</button></td>
+                                <td><button type="button" class="btn-link" (click)="callForm()">Add</button> | <button type="button" (click)="callForm(rw.id)" class="btn-link">Edit</button> | <button type="button" class="btn-link" (click)="saveDelete(rw.id)">Delete</button></td>
                                 <td>{{ rw.rwNo }}</td>
                                 <td>{{ rw.rwDescs }}</td>
                             </tr>
@@ -29,7 +29,7 @@
 </div>
 
 <div *ngIf="method == ACTION_UPDATE || method == ACTION_ADD">
-        <form [formGroup]="rw_form" (ngSubmit)="saveAdd()">
+        <form [formGroup]="rw_form" (ngSubmit)="save()">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="card">
