@@ -3,7 +3,7 @@
         <div class="row">
             <div class ="col-sm-12">
                 <div class="card-header">
-                    RW
+                    RW<button type="button" class="btn-link" (click)="callForm()">Add</button>
                 </div>
                 <div class="card-body">
                     <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
@@ -16,7 +16,7 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let rw of rws">
-                                <td><button type="button" class="btn-link" (click)="callForm()">Add</button> | <button type="button" (click)="callForm(rw.id)" class="btn-link">Edit</button> | <button type="button" class="btn-link" (click)="saveDelete(rw.id)">Delete</button></td>
+                                <td><button type="button" (click)="callForm(rw.id)" class="btn-link">Edit</button> | <button type="button" class="btn-link" (click)="saveDelete(rw.id)">Delete</button></td>
                                 <td>{{ rw.rwNo }}</td>
                                 <td>{{ rw.rwDescs }}</td>
                             </tr>

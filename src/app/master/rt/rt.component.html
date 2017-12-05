@@ -52,12 +52,12 @@
                                 <option *ngFor="let rw of rws"
                                     [value]="rw.id" [selected]= "rw.id == rt_form.get('rw').value">
                                     {{rw.rwNo}}
-                            </option>
-                        </select>                          
-                        <div *ngIf="rt_form.get('rw').touched && rt_form.get('rw').hasError('required')" class="alert alert-danger">
-                            Rw No is required.
-                    </div>
-                </div>
+                                </option>
+                            </select>                          
+                            <div *ngIf="rt_form.get('rw').touched && rt_form.get('rw').hasError('required')" class="alert alert-danger">
+                                Rw No is required.
+                            </div>
+                        </div>
             </div>
         </div>
         <div class="card-footer">

@@ -7,6 +7,7 @@ import {GroupComponent} from './group/group.component';
 import {RTComponent} from './rt/rt.component';
 import {RWComponent} from './rw/rw.component';
 import {KKComponent} from './kk/kk.component';
+import {BlockComponent} from './block/block.component';
 import {DataTablesModule} from 'angular-datatables';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -23,7 +24,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         GroupComponent,
         RTComponent,
         RWComponent,
-        KKComponent
+        KKComponent,
+        BlockComponent
     ]
 })
 export class MasterModule {}

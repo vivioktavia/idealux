@@ -4,13 +4,13 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise'
-import {Group} from '../models/group';
+import {Block} from '../models/block';
 import {environment} from '../../environments/environment';
 
 @Injectable()
 
-export class GroupService {
-    private url: string = environment.BASE_URL + "/groups/";
+export class BlockService {
+    private url: string = environment.BASE_URL + "/blocks/";
     private token: string = environment.token;
 
     constructor(private _http: Http) {}
@@ -29,43 +29,43 @@ export class GroupService {
         return Promise.reject(error.message || error);
     }
 
-    getGroupsList(): Observable<Group[]> {
+    getBlockList(): Observable<Block[]> {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
         return this._http.get(this.url, options)
             .map(this.extractData)
     }
 
-    getGroup(id): Promise<Group> {
+    getBlock(id): Promise<Block> {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
         return this._http.get(this.url + id + '/', options)
             .toPromise()
-            .then(response => response.json() || {} as Group)
+            .then(response => response.json() || {} as Block)
             .catch(this.handleError);
     }
 
-    addGroup(group){
+    addBlock(block){
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({method: RequestMethod.Post, headers: headers});
         return this._http.post(
             this.url,
-            group,
+            block,
             options
         ).map(res => res.json()).catch(this.handleError);;
     }
 
-    updateGroup(id, group) {
+    updateBlock(id, block) {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
         return this._http.put(
             this.url + id + "/",
-            group,
+            block,
             options
         ).map(res => res.json()).catch(this.handleErrorObservable);;
     }
 
-    deleteGroup(id) {
+    deleteBlock(id) {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
         return this._http.delete(this.url + id + "/", options);

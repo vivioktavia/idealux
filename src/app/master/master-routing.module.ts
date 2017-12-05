@@ -4,6 +4,7 @@ import {Routes, RouterModule} from '@angular/router';
 import {GroupComponent} from './group/group.component';
 import {RTComponent} from './rt/rt.component';
 import {RWComponent} from './rw/rw.component';
+import {BlockComponent} from './block/block.component';
 import {KKComponent} from './kk/kk.component';
 import {KKDetailsComponent} from './kk/kk_details.component';
 
@@ -21,6 +22,10 @@ const routes: Routes = [
             {path: 'rw', component: RWComponent, data: {title: 'RW'}},
             {path: 'rw/:id', component: RWComponent, data: {title: 'RW'}},
             {path: 'rw/new', component: RWComponent, data: {title: 'RW'}},
+
+            {path: 'block', component: BlockComponent, data: {title: 'Block'}},
+            {path: 'block/:id', component: BlockComponent, data: {title: 'Block'}},
+            {path: 'block/new', component: BlockComponent, data: {title: 'Block'}},
 
             {path: 'rt', component: RTComponent, data: {title: 'RT'}},
             {path: 'rt/:id', component: RTComponent, data: {title: 'RT'}},
