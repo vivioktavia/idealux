@@ -55,7 +55,7 @@ export class RWService {
     deleteRW(url) {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
-        return this._http.delete("http://young-eyrie-51496.herokuapp.com/rws/" + url, options);
+        return this._http.delete("http://young-eyrie-51496.herokuapp.com/rws/" + url + "/", options);
     }
 
     private handleErrorObservable(error: Response | any) {
