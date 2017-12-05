@@ -16,7 +16,9 @@ const routes: Routes = [
             {path: 'rw', component: RWComponent, data: {title: 'RW'}},
             {path: 'rw/:id', component: RWComponent, data: {title: 'RW'}},
             {path: 'rw/new', component: RWComponent, data: {title: 'RW'}},
-            {path: 'rt', component: RTComponent, data: {title: 'RT'}}
+            {path: 'rt', component: RTComponent, data: {title: 'RT'}},
+            {path: 'rt/:id', component: RTComponent, data: {title: 'RT'}},
+            {path: 'rt/new', component: RTComponent, data: {title: 'RT'}}
         ]
     }
 ];

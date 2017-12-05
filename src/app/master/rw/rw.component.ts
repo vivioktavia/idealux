@@ -1,11 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
 import {BaseComponent} from '../base.component';
 import {IBaseInterface} from '../base.interface';
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
+import {ToastrService} from 'ngx-toastr';
+
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
+
 import {RWService} from './rw.service';
 import {Observable} from 'rxjs/Observable';
 import {RW} from './rw';
+
 
 @Component({
     templateUrl: 'rw.component.html',
@@ -23,16 +27,20 @@ export class RWComponent extends BaseComponent implements OnInit, IBaseInterface
         private rwService: RWService,
         private routerRW: Router,
         private routeRW: ActivatedRoute,
+        private toastrRW : ToastrService,
         private formBuilder: FormBuilder
     ) {
-        super(routerRW, routeRW)
+        super(routerRW, routeRW, toastrRW)
         this.router = routerRW
         this.route = routeRW
+        this.toastr = toastrRW
         this.IService = this;
         this.rw_form = formBuilder.group({
             rwNo: ["", Validators.required],
             rwDescs: ["", ""]
         });
+        
+        this.url = "master/rw";
     }
 
     ngOnInit(): void {
@@ -69,8 +77,8 @@ export class RWComponent extends BaseComponent implements OnInit, IBaseInterface
             this.rwService.deleteRW(url).subscribe(
                 error => console.log(error)
             );
-            this.result = this.rwService.getRWList();
-            this.result.subscribe(val => {this.rws = val; this.dtTrigger.next()});
+//            this.result = this.rwService.getRWList();
+//            this.result.subscribe(val => {this.rws = val; this.dtTrigger.next()});
         };
     }
 }
