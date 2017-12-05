@@ -15,8 +15,6 @@ export class RWService {
 
     addRW(rw) {
         let headers = new Headers({'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'});
-        headers.append('Access-Control-Allow-Origin', '*');
-        headers.append("Access-Control-Allow-Credentials", "true");
         let options = new RequestOptions({method: RequestMethod.Post, headers: headers});
         console.log(rw)
         return this._http.post(
@@ -32,16 +30,12 @@ export class RWService {
             .then(response => response.json() || {} as RW)
             .catch(this.handleError);
     }
-    
+
     updateRW(id, rw) {
         let headers = new Headers({'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'});
-        headers.append("Content-Type", "application/x-www-form-urlencoded; charset=UTF-8");
-        headers.append('Access-Control-Allow-Origin', '*');
-        headers.append('Access-Control-Allow-Headers', 'Content-Type');
-        headers.append("Access-Control-Allow-Credentials", "true");
-        let options = new RequestOptions({method: RequestMethod.Post, headers: headers});
+        let options = new RequestOptions({headers: headers});
         return this._http.put(
-            'http://young-eyrie-51496.herokuapp.com/rws/' + id ,
+            'http://young-eyrie-51496.herokuapp.com/rws/' + id + "/",
             rw,
             options
         ).map(res => res.json()).catch(this.handleErrorObservable);;
@@ -56,7 +50,6 @@ export class RWService {
         let headers = new Headers({'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'});
         let options = new RequestOptions({headers: headers});
         return this._http.delete("http://young-eyrie-51496.herokuapp.com/rws/" + url, options);
-        //        return this._http.delete(url);
     }
 
     private handleErrorObservable(error: Response | any) {
