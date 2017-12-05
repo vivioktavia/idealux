@@ -4,6 +4,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import {RT} from './rt';
+import {RWService} from '../rw/rw.service';
 
 @Injectable()
 
@@ -11,12 +12,6 @@ import {RT} from './rt';
 export class RTService {
 
     constructor(private _http: Http) {}
-
-    readGroup(): Observable<RT[]> {
-        return this._http
-            .get("http://young-eyrie-51496.herokuapp.com/group/?format=json")
-            .map(res => res.json());
-    }
 
     addRT(rt) {
         let headers = new Headers({'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'});
