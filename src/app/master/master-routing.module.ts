@@ -13,6 +13,8 @@ const routes: Routes = [
         },
         children: [
             {path: 'group', component: GroupComponent, data: {title: 'Group'}},
+            {path: 'group/:id', component: GroupComponent, data: {title: 'Group'}},
+            {path: 'group/new', component: GroupComponent, data: {title: 'Group'}},
             
             {path: 'rw', component: RWComponent, data: {title: 'RW'}},
             {path: 'rw/:id', component: RWComponent, data: {title: 'RW'}},
