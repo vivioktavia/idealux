@@ -29,7 +29,7 @@ export class KtpService {
         return Promise.reject(error.message || error);
     }
 
-    getKtpsList(): Observable<Ktp[]> {
+    getKtpList(): Observable<Ktp[]> {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
         return this._http.get(this.url, options)
