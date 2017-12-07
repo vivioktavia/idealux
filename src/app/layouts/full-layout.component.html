@@ -11,7 +11,7 @@
             <div class="dropdown-menu dropdown-menu-right" *dropdownMenu aria-labelledby="simple-dropdown">
                 <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Profile</a>
                 <a class="dropdown-item" href="#"><i class="fa fa-wrench"></i> Setting</a>
-                <a class="dropdown-item" href="#"><i class="fa fa-lock"></i> Logout</a>
+                <a class="dropdown-item" href="#" (click)="onLogout()"><i class="fa fa-lock"></i> Logout</a>
             </div>
         </li>
         <!--<button class="navbar-toggler d-md-down-none" type="button" appAsideMenuToggler>&#9776;</button>-->
@@ -52,7 +52,7 @@
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/lot']"><i class="icon-calculator"></i> Lot</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/charts']"><i class="icon-pie-chart"></i> KTP</a>
+                            <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/ktp']"><i class="icon-pie-chart"></i> KTP</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" [routerLink]="['/master/kk']"><i class="icon-pie-chart"></i> KK</a>

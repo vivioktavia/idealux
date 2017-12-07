@@ -6,14 +6,16 @@ import {ToastrService} from 'ngx-toastr';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 
 import {KKDetailsService} from '../../services/kk_details.service';
+import {KtpService} from '../../services/ktp.service';
 import {KKService} from '../../services/kk.service';
 import {Observable} from 'rxjs/Observable';
 import {KKDetails} from '../../models/kk_details';
 import {KK} from '../../models/kk';
+import {Ktp} from '../../models/ktp';
 
 @Component({
     templateUrl: 'kk_details.component.html',
-    providers: [KKDetailsService, KKService]
+    providers: [KKDetailsService, KKService, KtpService]
 })
 
 export class KKDetailsComponent extends BaseComponent implements OnInit, IBaseInterface {
@@ -24,10 +26,13 @@ export class KKDetailsComponent extends BaseComponent implements OnInit, IBaseIn
     data: KKDetails;
     kk: KK;
     kkNo: string;
+    ktpResult: Observable<Ktp[]>;
+    ktps: Ktp[] = [];
 
     constructor(
         private kkDetailsService: KKDetailsService,
         private kkService: KKService,
+        private ktpService: KtpService,
         private routerKK: Router,
         private routeKK: ActivatedRoute,
         private toastrKK: ToastrService,
@@ -47,19 +52,18 @@ export class KKDetailsComponent extends BaseComponent implements OnInit, IBaseIn
             kk: ["", Validators.required],
             ktp: ["", Validators.required]
         });
-
     }
 
     ngOnInit(): void {
         this.init();
-        
+
         this.sub = this.route.params.subscribe(params => {
             this.kkNo = params['kk'];
         });
         this.kk_details_form.controls['kk'].setValue(this.kkNo);
-        
+
         this.url = "master/kk_details/" + this.kkNo;
-        
+
         if (this.method == this.ACTION_UPDATE || this.method == this.ACTION_ADD) {
             if (this.method == this.ACTION_UPDATE) {
                 this.kkDetailsService.getKKDetailsByNo(this.id).then(data => {
@@ -74,14 +78,20 @@ export class KKDetailsComponent extends BaseComponent implements OnInit, IBaseIn
                     });
                 });
             }
+            this.getKtpList();
         } else {
             this.kkService.getKKByNo(this.kkNo).then(data => {
                 this.kk = data;
             });
             this.result = this.kkDetailsService.getKKDetailsList(this.kkNo);
             this.result.subscribe(val => {this.kk_details = val; this.dtTrigger.next();});
-            
+
         }
+    }
+
+    getKtpList() {
+        this.ktpResult = this.ktpService.getKtpList();
+        this.ktpResult.subscribe(val => {this.ktps = val});
     }
 
     saveAddItem(): void {
@@ -105,9 +115,4 @@ export class KKDetailsComponent extends BaseComponent implements OnInit, IBaseIn
             //            this.result.subscribe(val => {this.rws = val; this.dtTrigger.next()});
         };
     }
-
-    back() {
-        this.routerKK.navigate([this.url]);
-    }
-
 }

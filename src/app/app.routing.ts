@@ -4,17 +4,17 @@ import {Routes, RouterModule} from '@angular/router';
 // Layouts
 import {FullLayoutComponent} from './layouts/full-layout.component';
 import {LoginComponent} from './login/login.component';
-import {AuthGuardService} from './services/auth-guard.service';
+//import {AuthGuardService} from './services/auth-guard.service';
 
 
 export const routes: Routes = [
     {
-        path: '',
+        path: 'login',
         component: LoginComponent,
-        pathMatch: 'full',
+        pathMatch: 'full'
     },
     {
-        path: 'main_page',
+        path: '',
         component: FullLayoutComponent,
         data: {
             title: 'Home'

@@ -3,6 +3,7 @@ import {Router, ActivatedRoute} from '@angular/router';
 import {Subject} from 'rxjs/Subject';
 import {IBaseInterface} from './base.interface';
 import {ToastrService} from 'ngx-toastr';
+import {AuthService} from '../services/auth.service';
 
 @Component({
     template: ""
@@ -27,10 +28,11 @@ export class BaseComponent {
     constructor(
         protected router?: Router,
         protected route?: ActivatedRoute,
-        protected toastr?: ToastrService
+        protected toastr?: ToastrService,
     ) {
-        
-       
+        if (!localStorage.getItem("token")) {
+            this.router.navigate(['login']);
+        }
     }
 
     init() {
@@ -38,7 +40,7 @@ export class BaseComponent {
         this.dtOptions = {
             pagingType: 'full_numbers',
             pageLength: 10
-        };        
+        };
 
         this.sub = this.route.params.subscribe(params => {
             this.id = params['id'];
@@ -87,4 +89,8 @@ export class BaseComponent {
         this.toastr.success("Data Anda Berhasil Di simpan", "Success");
     }
 
+    onLogout() {
+        localStorage.removeItem("token");
+        this.router.navigate(['login']);
+    }
 }

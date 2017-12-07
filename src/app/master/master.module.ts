@@ -10,6 +10,7 @@ import {KKComponent} from './kk/kk.component';
 import {KKDetailsComponent} from './kk/kk_details.component';
 import {BlockComponent} from './block/block.component';
 import {LotComponent} from './lot/lot.component';
+import {KtpComponent} from './ktp/ktp.component';
 import {DataTablesModule} from 'angular-datatables';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -29,7 +30,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         KKComponent,
         KKDetailsComponent,
         BlockComponent,
-        LotComponent
+        LotComponent,
+        KtpComponent
     ]
 })
 export class MasterModule {}

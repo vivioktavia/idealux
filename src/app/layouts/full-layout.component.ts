@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {BaseComponent} from '../master/base.component';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './full-layout.component.html'
 })
-export class FullLayoutComponent implements OnInit {
+export class FullLayoutComponent extends BaseComponent implements OnInit {
 
   public disabled = false;
   public status: {isopen: boolean} = {isopen: false};
@@ -19,5 +20,5 @@ export class FullLayoutComponent implements OnInit {
     this.status.isopen = !this.status.isopen;
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {} 
 }

@@ -7,15 +7,15 @@
                 </div>
                 <div class="card-body">
                     <div class="col-sm-12">
-<!--                        <div class="form-group">       
-                            <label><strong>KK No: </strong>{{kk.kkNo}}</label>                            
-                        </div>
-                        <div class="form-group">       
-                            <label><strong>Address :</strong> {{kk.address}}</label>
-                        </div>
-                        <div class="form-group">                                   
-                            <label><strong>Lot :</strong> {{kk.lotNo}}</label>
-                        </div>-->
+                        <!--                        <div class="form-group">       
+                                                    <label><strong>KK No: </strong>{{kk.kkNo}}</label>                            
+                                                </div>
+                                                <div class="form-group">       
+                                                    <label><strong>Address :</strong> {{kk.address}}</label>
+                                                </div>
+                                                <div class="form-group">                                   
+                                                    <label><strong>Lot :</strong> {{kk.lotNo}}</label>
+                                                </div>-->
                         <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
                                <thead>
                                 <tr>
@@ -111,23 +111,28 @@
             </div>
             <div class="form-group">       
                 <label>KTP</label>
-                <input type="text" class="form-control" formControlName="ktp">                            
-                <div *ngIf="kk_details_form.get('ktp').touched && kk_details_form.get('ktp').hasError('required')" class="alert alert-danger">
-                    KTP is required.
-            </div>   
-        </div>
-
-
-        <!--                        <select formControlName="lotNo">
-                                    <option *ngFor="let lot of lotss"
-                                        [value]="lots.id" [selected]= "lots.id == lotNo">
-                                        {{lots.rwNo}}
-                                </option>
-                            </select>          -->
-        <!--                    <div *ngIf="kk_form.get('lotNo').touched && kk_form.get('lotNo').hasError('required')" class="alert alert-danger">
-                                Lot No is required.-->
-        <!--                </div>-->
+                <select class="form-control" formControlName="ktp">
+                    <option *ngFor="let ktp of ktps"
+                        [value]="ktp.id">
+                        {{ktp.nik}}
+                </option>            
+            </select>
+            <div *ngIf="kk_details_form.get('ktp').touched && kk_details_form.get('ktp').hasError('required')" class="alert alert-danger">
+                KTP is required.
+        </div>   
     </div>
+
+
+    <!--                        <select formControlName="lotNo">
+                                <option *ngFor="let lot of lotss"
+                                    [value]="lots.id" [selected]= "lots.id == lotNo">
+                                    {{lots.rwNo}}
+                            </option>
+                        </select>          -->
+    <!--                    <div *ngIf="kk_form.get('lotNo').touched && kk_form.get('lotNo').hasError('required')" class="alert alert-danger">
+                            Lot No is required.-->
+    <!--                </div>-->
+</div>
 </div>
 
 <div class="card-footer">
