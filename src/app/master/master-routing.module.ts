@@ -41,9 +41,9 @@ const routes: Routes = [
             {path: 'kk/:id', component: KKComponent, data: {title: 'KK'}},
             {path: 'kk/new', component: KKComponent, data: {title: 'KK'}},
 
-            {path: 'kk_details', component: KKComponent, data: {title: 'KK'}},
-            {path: 'kk_details/:id', component: KKComponent, data: {title: 'KK'}},
-            {path: 'kk_details/new', component: KKComponent, data: {title: 'KK'}}
+            {path: 'kk_details/:kk', component: KKDetailsComponent, data: {title: 'KK Detail'}},
+            {path: 'kk_details/:kk/:id', component: KKDetailsComponent, data: {title: 'KK Detail'}},
+            {path: 'kk_details/:kk/new', component: KKDetailsComponent, data: {title: 'KK Detail'}}
 
         ]
     }

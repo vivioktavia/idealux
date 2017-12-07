@@ -54,7 +54,6 @@ export class LotComponent extends BaseComponent implements OnInit, IBaseInterfac
             if (this.method == this.ACTION_UPDATE) {
                 this.lotService.getLot(this.id).then(data => {
                     this.data = data;
-                    console.log(data)
                     this.lot_form = this.formBuilder.group({
                         lotNo : [this.data.lotNo, Validators.required],
                         descs : [this.data.descs, Validators.required],

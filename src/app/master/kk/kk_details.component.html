@@ -3,36 +3,44 @@
         <div class="row">
             <div class ="col-sm-12">
                 <div class="card-header">
-                    KK<button type="button" class="btn-link" (click)="callForm()">Add</button>
+                    KK Detail<button type="button" class="btn-link" (click)="callForm()">Add</button>
                 </div>
                 <div class="card-body">
-
-                    <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
-                           <thead>
-                            <tr>
-                                <th>Action</th>
-                                <th>KK No</th>
-                                <th>Details</th>
-                                <th>Address</th>
-                                <th>RT No</th>
-                                <th>RW No</th>
-                                <th>Block</th>
-                                <th>Lot</th>                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let kk of kks">
-                                <td><button type="button" (click)="callForm(kk.id)" class="btn-link">Edit</button> | <button type="button" class="btn-link" (click)="saveDelete(kk.id)">Delete</button></td>
-                                <td>{{ kk.kkNo }}</td>
-                                <td>{{ kk.address }}</td>
-                                <td><a [routerLink]="['/master/kk_detail']">Detail </a></td>
-                                <td>{{ kk.rtNo }}</td>
-                                <td>{{ kk.rwNo }}</td>
-                                <td>{{ kk.blockNo }}</td>
-                                <td>{{ kk.lotNo }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="col-sm-12">
+<!--                        <div class="form-group">       
+                            <label><strong>KK No: </strong>{{kk.kkNo}}</label>                            
+                        </div>
+                        <div class="form-group">       
+                            <label><strong>Address :</strong> {{kk.address}}</label>
+                        </div>
+                        <div class="form-group">                                   
+                            <label><strong>Lot :</strong> {{kk.lotNo}}</label>
+                        </div>-->
+                        <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+                               <thead>
+                                <tr>
+                                    <th>Action</th>
+                                    <th>KK No</th>
+                                    <th>Nik</th>
+                                    <th>Education</th>
+                                    <th>Family Relation</th>
+                                    <th>Mother Name</th>
+                                    <th>Father Name</th>                               
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let kk_detail of kk_details">
+                                    <td><button type="button" (click)="callForm(kk_detail.id)" class="btn-link">Edit</button> | <button type="button" class="btn-link" (click)="saveDelete(kk_detail.id)">Delete</button></td>
+                                    <td>{{ kk_detail.kkNo }}</td>
+                                    <td>{{ kk_detail.nik }}</td>
+                                    <td>{{ kk_detail.educationDescs }}</td>
+                                    <td>{{ kk_detail.familyRelationDescs }}</td>
+                                    <td>{{ kk_detail.motherName }}</td>
+                                    <td>{{ kk_detail.fatherName }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -40,7 +48,7 @@
 </div>
 
 <div *ngIf="method == ACTION_UPDATE || method == ACTION_ADD">
-    <form [formGroup]="kk_form" (ngSubmit)="save()">
+    <form [formGroup]="kk_details_form" (ngSubmit)="save()">
         <div class="row">
             <div class="col-sm-6">
                 <div class="card">
@@ -49,44 +57,85 @@
                     </div>
                     <div class="card-body">
                         <div class="col-sm-12">
-                            <div class="form-group">       
-                                <label>KK No</label>
-                                <input type="text" class="form-control" formControlName="kkNo">                            
-                                <div *ngIf="kk_form.get('kkNo').touched && kk_form.get('kkNo').hasError('required')" class="alert alert-danger">
-                                    KK No is required.
+                            <div class="form-group">
+                                <input type="hidden" class="form-control" formControlName="kk">
+                                <label>Education</label>
+                                <select class="form-control" formControlName="education">
+                                    <option value="01">Tidak / Belum Sekolah</option>
+                                    <option value="02">Belum Tamat SD / Sederajat</option>
+                                    <option value="03">Tamat SD / Sederajat</option>
+                                    <option value="04">SLTP / Sederajat</option>
+                                    <option value="05">SLTA / Sederajat</option>
+                                    <option value="06">Diploma I / II</option>
+                                    <option value="07">Akademi / Diploma III / Sarjana Muda</option>
+                                    <option value="08">Diploma IV / Sastra I</option>
+                                    <option value="09">Sastra II</option>
+                                    <option value="10">Sastra III</option>
+                                </select>                                                               
+                                <div *ngIf="kk_details_form.get('education').touched && kk_details_form.get('education').hasError('required')" class="alert alert-danger">
+                                    Education is required.
                             </div>
                         </div>
                         <div class="form-group">       
-                            <label>Address </label>
-                            <input type="text" class="form-control" formControlName="address">                            
-                            <div *ngIf="kk_form.get('address').touched && kk_form.get('address').hasError('required')" class="alert alert-danger">
-                                Address is required.
+                            <label>Family Relation </label>
+                            <select class="form-control" formControlName="familyRelation">                            
+                                <option value ="01">Kepala Keluarga</option>
+                                <option value ="02">Suami</option>
+                                <option value ="03">Istri</option>
+                                <option value ="04">Anak</option>
+                                <option value ="05">Menantu</option>
+                                <option value ="06">Cucu</option>
+                                <option value ="07">Orangtua</option>
+                                <option value ="08">Mertua</option>
+                                <option value ="09">Family Lain</option>
+                                <option value ="10">Pembantu</option>
+                                <option value ="11">Lainnya</option>
+                            </select>
+                            <div *ngIf="kk_details_form.get('familyRelation').touched && kk_details_form.get('familyRelation').hasError('required')" class="alert alert-danger">
+                                Family Relation is required.
                         </div>
                     </div>
                     <div class="form-group">       
-                        <label>Lot No</label>
-                        <input type="text" class="form-control" formControlName="lot">                            
-                        <div *ngIf="kk_form.get('lot').touched && kk_form.get('lot').hasError('required')" class="alert alert-danger">
-                            Lot is required.
+                        <label>Father Name</label>
+                        <input type="text" class="form-control" formControlName="fatherName">                            
+                        <div *ngIf="kk_details_form.get('fatherName').touched && kk_details_form.get('fatherName').hasError('required')" class="alert alert-danger">
+                            Father Name is required.
                     </div>
-                    <!--                        <select formControlName="lotNo">
-                                                <option *ngFor="let lot of lotss"
-                                                    [value]="lots.id" [selected]= "lots.id == lotNo">
-                                                    {{lots.rwNo}}
-                                            </option>
-                                        </select>          -->
-                    <!--                    <div *ngIf="kk_form.get('lotNo').touched && kk_form.get('lotNo').hasError('required')" class="alert alert-danger">
-                                            Lot No is required.-->
-                    <!--                </div>-->
                 </div>
+                <div class="form-group">       
+                    <label>Mother Name</label>
+                    <input type="text" class="form-control" formControlName="motherName">                            
+                    <div *ngIf="kk_details_form.get('motherName').touched && kk_details_form.get('motherName').hasError('required')" class="alert alert-danger">
+                        Mother Name is required.
+                </div>   
             </div>
+            <div class="form-group">       
+                <label>KTP</label>
+                <input type="text" class="form-control" formControlName="ktp">                            
+                <div *ngIf="kk_details_form.get('ktp').touched && kk_details_form.get('ktp').hasError('required')" class="alert alert-danger">
+                    KTP is required.
+            </div>   
         </div>
 
-        <div class="card-footer">
-            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
-            <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
-        </div>
+
+        <!--                        <select formControlName="lotNo">
+                                    <option *ngFor="let lot of lotss"
+                                        [value]="lots.id" [selected]= "lots.id == lotNo">
+                                        {{lots.rwNo}}
+                                </option>
+                            </select>          -->
+        <!--                    <div *ngIf="kk_form.get('lotNo').touched && kk_form.get('lotNo').hasError('required')" class="alert alert-danger">
+                                Lot No is required.-->
+        <!--                </div>-->
     </div>
+</div>
+
+<div class="card-footer">
+    <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Submit</button>
+    <button type="reset" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</button>
+    <!--<button type="button" class="btn btn-sm btn-success"><i class="fa fa-arrow-left" (onclick)="back()"></i> Back</button>-->
+</div>
+</div>
 </div>
 </div>
 </form>

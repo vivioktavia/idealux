@@ -7,6 +7,7 @@ import {GroupComponent} from './group/group.component';
 import {RTComponent} from './rt/rt.component';
 import {RWComponent} from './rw/rw.component';
 import {KKComponent} from './kk/kk.component';
+import {KKDetailsComponent} from './kk/kk_details.component';
 import {BlockComponent} from './block/block.component';
 import {LotComponent} from './lot/lot.component';
 import {DataTablesModule} from 'angular-datatables';
@@ -26,6 +27,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         RTComponent,
         RWComponent,
         KKComponent,
+        KKDetailsComponent,
         BlockComponent,
         LotComponent
     ]

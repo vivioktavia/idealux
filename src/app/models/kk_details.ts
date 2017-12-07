@@ -1,13 +1,16 @@
 export class KKDetails {
     constructor( 
         public id : number,
-        public rwNo: string,
-        public rtNo : string,
-        public blockNo : string,
-        public lotNo : string,
-        public kkNo : string,
-        public address : string,
-        public lot : string
+        public kkNo: string,
+        public nik : string,
+        public education : string,
+        public educationDescs : string,
+        public familyRelation : string,
+        public familyRelationDesc : string,
+        public fatherName : string,
+        public motherName : string,
+        public kk : string,
+        public ktp : string
     ){}
     
 }

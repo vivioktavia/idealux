@@ -6,23 +6,28 @@ import {ToastrService} from 'ngx-toastr';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 
 import {KKDetailsService} from '../../services/kk_details.service';
+import {KKService} from '../../services/kk.service';
 import {Observable} from 'rxjs/Observable';
+import {KKDetails} from '../../models/kk_details';
 import {KK} from '../../models/kk';
 
 @Component({
-    templateUrl: 'kk.component.html',
-    providers: [KKDetailsService]
+    templateUrl: 'kk_details.component.html',
+    providers: [KKDetailsService, KKService]
 })
 
 export class KKDetailsComponent extends BaseComponent implements OnInit, IBaseInterface {
 
-    kk_form: FormGroup;
-    result: Observable<KK[]>;
-    kks: KK[] = [];
-    data: KK;
+    kk_details_form: FormGroup;
+    result: Observable<KKDetails[]>;
+    kk_details: KKDetails[] = [];
+    data: KKDetails;
+    kk: KK;
+    kkNo: string;
 
     constructor(
-        private kkDetailsService: KKDetailsService,        
+        private kkDetailsService: KKDetailsService,
+        private kkService: KKService,
         private routerKK: Router,
         private routeKK: ActivatedRoute,
         private toastrKK: ToastrService,
@@ -33,49 +38,67 @@ export class KKDetailsComponent extends BaseComponent implements OnInit, IBaseIn
         this.route = routeKK
         this.toastr = toastrKK
         this.IService = this
-        this.kk_form = formBuilder.group({
-            kkNo: ["", Validators.required],
-            address: ["", Validators.required],
-            lot: ["", Validators.required]
+
+        this.kk_details_form = formBuilder.group({
+            education: ["", Validators.required],
+            fatherName: ["", Validators.required],
+            motherName: ["", Validators.required],
+            familyRelation: ["", Validators.required],
+            kk: ["", Validators.required],
+            ktp: ["", Validators.required]
         });
 
-        this.url = "master/kk";
     }
 
     ngOnInit(): void {
         this.init();
+        
+        this.sub = this.route.params.subscribe(params => {
+            this.kkNo = params['kk'];
+        });
+        this.kk_details_form.controls['kk'].setValue(this.kkNo);
+        
+        this.url = "master/kk_details/" + this.kkNo;
+        
         if (this.method == this.ACTION_UPDATE || this.method == this.ACTION_ADD) {
             if (this.method == this.ACTION_UPDATE) {
-                this.kkDetailsService.getKKByNo(this.id).then(data => {
+                this.kkDetailsService.getKKDetailsByNo(this.id).then(data => {
                     this.data = data;
-                    this.kk_form = this.formBuilder.group({
-                        kkNo: [this.data.rtNo, Validators.required],
-                        address: [this.data.address, Validators.required],
-                        lotNo: [this.data.lot, Validators.required]
+                    this.kk_details_form = this.formBuilder.group({
+                        education: [this.data.education, Validators.required],
+                        fatherName: [this.data.fatherName, Validators.required],
+                        motherName: [this.data.motherName, Validators.required],
+                        familyRelation: [this.data.familyRelation, Validators.required],
+                        kk: [this.data.kk, Validators.required],
+                        ktp: [this.data.ktp, Validators.required]
                     });
                 });
             }
         } else {
-            this.result = this.kkDetailsService.getKKList();
-            this.result.subscribe(val => {this.kks = val; this.dtTrigger.next()});
+            this.kkService.getKKByNo(this.kkNo).then(data => {
+                this.kk = data;
+            });
+            this.result = this.kkDetailsService.getKKDetailsList(this.kkNo);
+            this.result.subscribe(val => {this.kk_details = val; this.dtTrigger.next();});
+            
         }
     }
 
     saveAddItem(): void {
-        this.kkDetailsService.addKK(this.kk_form.value).subscribe(
+        this.kkDetailsService.addKKDetails(this.kk_details_form.value).subscribe(
             error => console.log(error)
         );
     }
 
     saveUpdateItem(url): void {
-        this.kkDetailsService.updateKK(url, this.kk_form.value).subscribe(
+        this.kkDetailsService.updateKKDetails(url, this.kk_details_form.value).subscribe(
             error => console.log(error)
         );
     }
 
     saveDeleteItem(url): void {
         if (confirm("Apakah Anda yakin akan menghapus data")) {
-            this.kkDetailsService.deleteKK(url).subscribe(
+            this.kkDetailsService.deleteKKDetails(url).subscribe(
                 error => console.log(error)
             );
             //            this.result = this.rwService.getRWList();
@@ -83,5 +106,8 @@ export class KKDetailsComponent extends BaseComponent implements OnInit, IBaseIn
         };
     }
 
+    back() {
+        this.routerKK.navigate([this.url]);
+    }
 
 }

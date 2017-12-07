@@ -6,23 +6,29 @@ import {ToastrService} from 'ngx-toastr';
 import {FormGroup, Validators, FormBuilder} from '@angular/forms';
 
 import {KKService} from '../../services/kk.service';
+import {LotService} from '../../services/lot.service';
 import {Observable} from 'rxjs/Observable';
 import {KK} from '../../models/kk';
+import {Lot} from '../../models/lot';
 
 @Component({
     templateUrl: 'kk.component.html',
-    providers: [KKService]
+    providers: [KKService, LotService]
 })
 
 export class KKComponent extends BaseComponent implements OnInit, IBaseInterface {
 
     kk_form: FormGroup;
     result: Observable<KK[]>;
+    lotResult: Observable<Lot[]>;
     kks: KK[] = [];
+    lots : Lot[] = [];
+        
     data: KK;
 
     constructor(
         private kkService: KKService,        
+        private lotService: LotService, 
         private routerKK: Router,
         private routeKK: ActivatedRoute,
         private toastrKK: ToastrService,
@@ -55,10 +61,16 @@ export class KKComponent extends BaseComponent implements OnInit, IBaseInterface
                     });
                 });
             }
-        } else {
+            this.getLotList();
+        } else {            
             this.result = this.kkService.getKKList();
             this.result.subscribe(val => {this.kks = val; this.dtTrigger.next()});
         }
+    }
+
+    getLotList() {
+        this.lotResult = this.lotService.getLotList();
+        this.lotResult.subscribe(val => {this.lots = val});
     }
 
     saveAddItem(): void {

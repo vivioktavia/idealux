@@ -16,17 +16,17 @@ export class KKDetailsService {
 
     constructor(private _http: Http) {}
 
-    addKK(kk) {
+    addKKDetails(kkDetails) {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({method: RequestMethod.Post, headers: headers});
         return this._http.post(
             this.url,
-            kk,
+            kkDetails,
             options
         ).map(res => res.json()).catch(this.handleError);;
     }
 
-    getKKByNo(id): Promise<KKDetails> {
+    getKKDetailsByNo(id): Promise<KKDetails> {
         //        let headers = new Headers({'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'});
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
@@ -36,26 +36,26 @@ export class KKDetailsService {
             .catch(this.handleError);
     }
 
-    updateKK(id, kk) {
+    updateKKDetails(id, kkDetails) {
         //        let headers = new Headers({'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'});
         let headers = new Headers({'Authorization': 'Token ' + this.token});
-        let options = new RequestOptions({method: RequestMethod.Post, headers: headers});
+        let options = new RequestOptions({headers: headers});
         return this._http.put(
             this.url + id + "/",
-            kk,
+            kkDetails,
             options
         ).map(res => res.json()).catch(this.handleErrorObservable);;
     }
 
-    getKKList(): Observable<KKDetails[]> {
+    getKKDetailsList(kkNo: string): Observable<KKDetails[]> {
         //        let headers = new Headers({'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'});
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
-        return this._http.get(this.url, options)
+        return this._http.get(this.url + "?kk="+kkNo, options)
             .map(this.extractData)
     }
 
-    deleteKK(id) {
+    deleteKKDetails(id) {
         //        let headers = new Headers({'Authorization': 'Token b156eb3d1c48875e967a7322cbfdc850ff31642a'});
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});

@@ -28,14 +28,17 @@ export class BaseComponent {
         protected router?: Router,
         protected route?: ActivatedRoute,
         protected toastr?: ToastrService
-    ) {}
+    ) {
+        
+       
+    }
 
     init() {
 
         this.dtOptions = {
             pagingType: 'full_numbers',
             pageLength: 10
-        };
+        };        
 
         this.sub = this.route.params.subscribe(params => {
             this.id = params['id'];
@@ -51,6 +54,7 @@ export class BaseComponent {
     }
 
     callForm(id?) {
+        console.log(this.url);
         if (id) {
             this.router.navigate([this.url, id]);
         } else {

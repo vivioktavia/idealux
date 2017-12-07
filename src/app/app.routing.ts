@@ -3,17 +3,18 @@ import {Routes, RouterModule} from '@angular/router';
 
 // Layouts
 import {FullLayoutComponent} from './layouts/full-layout.component';
+import {LoginComponent} from './login/login.component';
 import {AuthGuardService} from './services/auth-guard.service';
 
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'dashboard',
+        component: LoginComponent,
         pathMatch: 'full',
     },
     {
-        path: '',
+        path: 'main_page',
         component: FullLayoutComponent,
         data: {
             title: 'Home'
