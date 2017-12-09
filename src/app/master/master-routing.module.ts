@@ -9,6 +9,7 @@ import {LotComponent} from './lot/lot.component';
 import {KtpComponent} from './ktp/ktp.component';
 import {KKComponent} from './kk/kk.component';
 import {KKDetailsComponent} from './kk/kk_details.component';
+import {BankComponent} from './bank/bank.component';
 
 const routes: Routes = [
     {
@@ -48,7 +49,12 @@ const routes: Routes = [
 
             {path: 'kk_details/:kk', component: KKDetailsComponent, data: {title: 'KK Detail'}},
             {path: 'kk_details/:kk/:id', component: KKDetailsComponent, data: {title: 'KK Detail'}},
-            {path: 'kk_details/:kk/new', component: KKDetailsComponent, data: {title: 'KK Detail'}}
+            {path: 'kk_details/:kk/new', component: KKDetailsComponent, data: {title: 'KK Detail'}},
+
+            {path: 'bank', component: BankComponent, data: {title: 'Bank'}},
+            {path: 'bank/:id', component: BankComponent, data: {title: 'Bank'}},
+            {path: 'bank/new', component: RTComponent, data: {title: 'Bank'}},
+
 
         ]
     }
