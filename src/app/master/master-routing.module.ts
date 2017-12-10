@@ -10,6 +10,7 @@ import {KtpComponent} from './ktp/ktp.component';
 import {KKComponent} from './kk/kk.component';
 import {KKDetailsComponent} from './kk/kk_details.component';
 import {BankComponent} from './bank/bank.component';
+import {DocprefixComponent} from './docprefix/docprefix.component';
 
 const routes: Routes = [
     {
@@ -53,8 +54,11 @@ const routes: Routes = [
 
             {path: 'bank', component: BankComponent, data: {title: 'Bank'}},
             {path: 'bank/:id', component: BankComponent, data: {title: 'Bank'}},
-            {path: 'bank/new', component: RTComponent, data: {title: 'Bank'}},
+            {path: 'bank/new', component: BankComponent, data: {title: 'Bank'}},
 
+            {path: 'docprefix', component: DocprefixComponent, data: {title: 'Docprefix'}},
+            {path: 'docprefix/:id', component: DocprefixComponent, data: {title: 'Docprefix'}},
+            {path: 'docprefix/new', component: DocprefixComponent, data: {title: 'Docprefix'}},
 
         ]
     }

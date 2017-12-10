@@ -13,6 +13,7 @@ import {BlockComponent} from './block/block.component';
 import {LotComponent} from './lot/lot.component';
 import {KtpComponent} from './ktp/ktp.component';
 import {BankComponent} from './bank/bank.component';
+import {DocprefixComponent} from './docprefix/docprefix.component';
 import {DataTablesModule} from 'angular-datatables';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -35,7 +36,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
         BlockComponent,
         LotComponent,
         KtpComponent,
-        BankComponent
+        BankComponent,
+        DocprefixComponent
     ]
 })
 export class MasterModule {}
