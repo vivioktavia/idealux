@@ -1,6 +1,6 @@
 export class Option {
 	constructor(
-		public id : string,
-		public descs:string
+		public key : string,
+		public display:string
 	){}
 }
