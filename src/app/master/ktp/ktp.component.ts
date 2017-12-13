@@ -9,6 +9,7 @@ import {Ktp} from '../../models/ktp';
 import {Option} from '../../models/option';
 import {KtpService} from '../../services/ktp.service';
 import {OptionService} from '../../services/option.service';
+import {GenderOptions, ReligionOptions, MaritalStatusOptions, NationalityOptions, BloodTypeOptions} from '../../constant/option'
 
 @Component({
     templateUrl: 'ktp.component.html',
@@ -23,6 +24,11 @@ export class KtpComponent extends BaseComponent implements OnInit, IBaseInterfac
     professionResult: Observable<Option[]>;
     professions: Option[] = [];
     data: Ktp;
+    genderOptions: Option[] = [];
+    religionOptions: Option[] = [];
+    maritalStatusOptions: Option[] = [];
+    bloodTypeOptions: Option[] = [];
+    nationalityOptions: Option[] = [];
 
     constructor(
         private ktpService : KtpService,
@@ -51,6 +57,7 @@ export class KtpComponent extends BaseComponent implements OnInit, IBaseInterfac
         });
         
         this.url = "master/ktp";
+
     }
 
     ngOnInit(): void {
@@ -75,6 +82,11 @@ export class KtpComponent extends BaseComponent implements OnInit, IBaseInterfac
                 });
             }
             this.getProfessions();
+            this.genderOptions = GenderOptions;
+            this.religionOptions = ReligionOptions;
+            this.maritalStatusOptions = MaritalStatusOptions;
+            this.bloodTypeOptions = BloodTypeOptions;
+            this.nationalityOptions = NationalityOptions;
         } else {
             this.result = this.ktpService.getKtpList();
             this.result.subscribe(val => {this.ktps = val; this.dtTrigger.next()});
