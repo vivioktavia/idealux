@@ -20,6 +20,7 @@ import {ChargeComponent} from './charge/charge.component';
 import {ModalComponent} from './component/modal.component';
 import {TrxtypeComponent} from './trxtype/trxtype.component';
 
+
 @NgModule({
     imports: [
         MasterRoutingModule,
