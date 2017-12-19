@@ -4,12 +4,12 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise'
-import {Block} from '../models/block';
+import {Option} from '../models/option';
 import {environment} from '../../environments/environment';
 
 @Injectable()
 
-export class ProfessionService {
+export class OptionService {
     private url: string = environment.BASE_URL + "/professionchoices/";
     private token: string = environment.token;
 
@@ -29,7 +29,7 @@ export class ProfessionService {
         return Promise.reject(error.message || error);
     }
 
-    getProffesions(): Observable<Block[]> {
+    getProffesions(): Observable<Option[]> {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
         return this._http.get(this.url, options)
