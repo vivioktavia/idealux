@@ -14,17 +14,17 @@ import {BankService} from '../../services/bank.service';
 })
 
 export class BankComponent extends BaseComponent implements OnInit, IBaseInterface {
-    
+
     bank_form: FormGroup;
     result: Observable<Bank[]>;
     banks: Bank[] = [];
     data: Bank;
 
     constructor(
-        private bankService : BankService,
+        private bankService: BankService,
         private routerBank: Router,
         private routeBank: ActivatedRoute,
-        private toastrBank : ToastrService,
+        private toastrBank: ToastrService,
         private formBuilder: FormBuilder
     ) {
         super(routerBank, routeBank, toastrBank)
@@ -37,12 +37,12 @@ export class BankComponent extends BaseComponent implements OnInit, IBaseInterfa
             descs: ["", Validators.required],
             bankAccount: ["", Validators.required]
         });
-        
+
         this.url = "master/bank";
     }
 
     ngOnInit(): void {
-        
+
         this.init();
         if (this.method == this.ACTION_UPDATE) {
             this.bankService.getBank(this.id).then(data => {
@@ -73,9 +73,11 @@ export class BankComponent extends BaseComponent implements OnInit, IBaseInterfa
 
     saveDeleteItem(id): void {
         if (confirm("Apakah Anda yakin akan menghapus data")) {
-            this.bankService.deleteBank(id).subscribe(
-                error => console.log(error)
-            );
+            try {
+                this.bankService.deleteBank(id).catch();
+            } catch (e) {
+                console.log(e);
+            }
         };
     }
 }
