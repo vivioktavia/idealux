@@ -1,24 +1,28 @@
 {
-  "name": "coreui-angular",
+  "name": "package.json",
   "version": "1.0.0-alpha.6",
   "description": "Open Source Bootstrap Admin Template",
   "author": "",
   "url": "http://coreui.io",
   "copyright": "Copyright 2017 creativeLabs Łukasz Holeczek",
   "license": "MIT",
+  "main": "server.js",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
     "@angular/animations": "^4.4.6",
+    "@angular/cli": "^1.5.4",
     "@angular/common": "4.3.4",
     "@angular/compiler": "4.3.4",
+    "@angular/compiler-cli": "4.3.4",
     "@angular/core": "4.3.4",
     "@angular/forms": "4.3.4",
     "@angular/http": "4.3.4",
@@ -27,12 +31,14 @@
     "@angular/router": "4.3.4",
     "@angular/upgrade": "4.3.4",
     "@ng-bootstrap/ng-bootstrap": "^1.0.0-alpha.31",
+    "@types/datatables.net": "^1.10.7",
     "angular-datatables": "^4.0.0",
     "bootstrap": "^3.3.7",
     "chart.js": "2.6.0",
     "core-js": "2.5.0",
     "datatables.net": "^1.10.16",
     "datatables.net-dt": "^1.10.16",
+    "express": "^4.16.2",
     "jquery": "^3.2.1",
     "moment": "2.18.1",
     "ng2-charts": "1.6.0",
@@ -41,17 +47,14 @@
     "ngx-toastr": "^6.0.0",
     "rxjs": "5.4.3",
     "ts-helpers": "1.1.2",
+    "typescript": "^2.3.4",
     "underscore": "^1.8.3",
     "zone.js": "0.8.16"
   },
   "devDependencies": {
-    "@angular/cli": "^1.5.4",
-    "@angular/compiler-cli": "4.3.4",
-    "@types/datatables.net": "^1.10.7",
     "@types/jasmine": "2.5.53",
     "@types/jquery": "^3.2.16",
     "@types/node": "8.0.20",
-    "@types/underscore": "^1.8.5",
     "chalk": "^2.3.0",
     "codelyzer": "3.1.2",
     "jasmine-core": "2.7.0",
@@ -64,11 +67,21 @@
     "karma-jasmine-html-reporter": "0.2.2",
     "protractor": "5.1.2",
     "ts-node": "3.3.0",
-    "tslint": "5.6.0",
-    "typescript": "2.4.2"
+    "tslint": "5.6.0"
   },
   "engines": {
     "node": ">= 6.9.0",
     "npm": ">= 3.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vivioktavia/idealux.git"
+  },
+  "keywords": [
+    "'"
+  ],
+  "bugs": {
+    "url": "https://github.com/vivioktavia/idealux/issues"
+  },
+  "homepage": "https://github.com/vivioktavia/idealux#readme"
 }

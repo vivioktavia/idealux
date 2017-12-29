@@ -68,7 +68,7 @@ export class BaseComponent {
         if (this.method == this.ACTION_ADD) {
             this.saveAdd();
         } else if (this.method == this.ACTION_UPDATE) {
-
+        
             this.saveUpdate();
         }
     }
@@ -86,12 +86,8 @@ export class BaseComponent {
     }
 
     saveDelete(id) {
-        try {
-            this.IService.saveDeleteItem(id);
-            this.toastr.success("Data Anda Berhasil Di simpan", "Success");
-        } catch (e) {
-            this.toastr.error(e, "Error");
-        }
+        this.IService.saveDeleteItem(id);
+        this.toastr.success("Data Anda Berhasil Di simpan", "Success");
     }
 
     onLogout() {

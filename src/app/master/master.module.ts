@@ -19,7 +19,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ChargeComponent} from './charge/charge.component';
 import {ModalComponent} from './component/modal.component';
 import {TrxtypeComponent} from './trxtype/trxtype.component';
-
+import {AddendumChargeComponent} from './addendum_charge/addendum_charge.component';
+import {InvoiceComponent} from './invoice/invoice.component';
 
 @NgModule({
     imports: [
@@ -44,7 +45,9 @@ import {TrxtypeComponent} from './trxtype/trxtype.component';
         DocprefixComponent,
         ChargeComponent,
         ModalComponent,
-        TrxtypeComponent
+        TrxtypeComponent,
+        AddendumChargeComponent,
+        InvoiceComponent
     ]
 })
 export class MasterModule {}

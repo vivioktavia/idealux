@@ -4,13 +4,13 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise'
-import {Bank} from '../models/bank';
+import {AddendumCharge} from '../models/addendum_charge';
 import {environment} from '../../environments/environment';
 
 @Injectable()
 
-export class BankService {
-    private url: string = environment.BASE_URL + "/banks/";
+export class AddendumChargeService {
+    private url: string = environment.BASE_URL + "/addendumcharges/";
     private token: string = environment.token;
 
     constructor(private _http: Http) {}
@@ -29,43 +29,43 @@ export class BankService {
         return Promise.reject(error.message || error);
     }
 
-    getBanks(): Observable<Bank[]> {
+    getAddendumCharges(): Observable<AddendumCharge[]> {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
         return this._http.get(this.url, options)
             .map(this.extractData)
     }
 
-    getBank(id): Promise<Bank> {
+    getAddendumCharge(id): Promise<AddendumCharge> {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
         return this._http.get(this.url + id + '/', options)
             .toPromise()
-            .then(response => response.json() || {} as Bank)
+            .then(response => response.json() || {} as AddendumCharge)
             .catch(this.handleError);
     }
 
-    addBank(bank){
+    addAddendumCharge(addendumCharge){
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({method: RequestMethod.Post, headers: headers});
         return this._http.post(
             this.url,
-            bank,
+            addendumCharge,
             options
         ).map(res => res.json()).catch(this.handleError);;
     }
 
-    updateBank(id, bank) {
+    updateAddendumCharge(id, addendumCharge) {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
         return this._http.put(
             this.url + id + "/",
-            bank,
+            addendumCharge,
             options
         ).map(res => res.json()).catch(this.handleErrorObservable);;
     }
 
-    deleteBank(id) {
+    deleteAddendumCharge(id) {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
         return this._http.delete(this.url + id + "/", options);

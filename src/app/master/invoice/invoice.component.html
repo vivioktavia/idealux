@@ -1,0 +1,37 @@
+<form [formGroup]="invoice_form" (ngSubmit)="save()">
+	<div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Charge
+                </div>
+                <div class="card-body">
+                    <div class="col-sm-12">
+                        <div class="form-group" >
+                            <label>Document Date</label>
+                            <input type="date" class="form-control" formControlName="docDate">                            
+                            <div *ngIf="invoice_form.get('docDate').touched && invoice_form.get('docDate').hasError('required')" class="alert alert-danger">
+                                Document Date is required.
+                            </div>
+                        </div>
+                        <div class="form-group">       
+                            <label>Charge</label>
+                            <select  class="form-control" formControlName="charge">                      
+                                <option *ngFor="let charge of charges"
+                                    [value]="charge.id" [selected]= "charge.descs == invoice_form.get('charge').value">
+                                    {{charge.descs}}
+                                </option>
+                            </select>
+                            <div *ngIf="invoice_form.get('charge').touched && invoice_form.get('charge').hasError('required')" class="alert alert-danger">
+                                Charge is required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> Generate</button>
+					</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
