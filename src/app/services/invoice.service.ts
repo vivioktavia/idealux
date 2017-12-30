@@ -16,7 +16,7 @@ export class InvoiceService {
     constructor(private _http: Http) {}
 
     private extractData(res: Response) {
-        const body = res.json();
+        const body = res.json().data;
         return body || {};
     }
 
@@ -29,12 +29,19 @@ export class InvoiceService {
         return Promise.reject(error.message || error);
     }
 
-    generateInvoice(charge, data): Observable<Invoice[]> {
+    generateInvoice(data): Observable<Invoice[]> {
         let headers = new Headers({'Authorization': 'Token ' + this.token});
         let options = new RequestOptions({headers: headers});
         return this._http.post(this.url,
             data,
             options
-        ).map(this.extractData)
+        ).map(this.extractData);
+    }
+    
+    getInvoices(): Observable<Invoice[]>{
+        let headers = new Headers({'Authorization': 'Token ' + this.token});
+        let options = new RequestOptions({headers: headers});
+        return this._http.get(this.url, options)
+            .map(this.extractData)
     }
 }
