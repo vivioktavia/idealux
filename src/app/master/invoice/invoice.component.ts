@@ -49,21 +49,9 @@ export class InvoiceComponent extends BaseComponent implements OnInit {
         this.init();
         this.getCharges();
 
-        //        console.log(this.invoice_form)
-        //        console.log(new Date((new Date()).setHours(0, 0, 0, 0)))
-        // if (this.method == this.ACTION_UPDATE) {
-        //     this.bankService.getBank(this.id).then(data => {
-        //         this.data = data;
-        //         this.invoice_form = this.formBuilder.group({
-        //             bankCd: [this.data.bankCd, Validators.required],
-        //             descs: [this.data.descs, Validators.required],
-        //             bankAccount: [this.data.bankAccount, Validators.required],
-        //         });
-        //     });
-        // } else {
-        this.result = this.invoiceService.getInvoices();
-        this.result.subscribe(val => {this.invoices = val; this.dtTrigger.next()});
-        // }
+        // this.result = this.invoiceService.getInvoices();
+        // this.result.subscribe(val => {this.invoices = val; this.dtTrigger.next()});
+
     }
 
     getCharges() {
