@@ -21,6 +21,7 @@ import {ModalComponent} from './component/modal.component';
 import {TrxtypeComponent} from './trxtype/trxtype.component';
 import {AddendumChargeComponent} from './addendum_charge/addendum_charge.component';
 import {InvoiceComponent} from './invoice/invoice.component';
+import {InvoicePaymentComponent} from './invoice_payment/invoice_payment.component';
 
 @NgModule({
     imports: [
@@ -47,7 +48,8 @@ import {InvoiceComponent} from './invoice/invoice.component';
         ModalComponent,
         TrxtypeComponent,
         AddendumChargeComponent,
-        InvoiceComponent
+        InvoiceComponent,
+        InvoicePaymentComponent
     ]
 })
 export class MasterModule {}

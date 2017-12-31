@@ -15,6 +15,7 @@ import {ChargeComponent} from './charge/charge.component';
 import {TrxtypeComponent} from './trxtype/trxtype.component';
 import {AddendumChargeComponent} from './addendum_charge/addendum_charge.component';
 import {InvoiceComponent} from './invoice/invoice.component';
+import {InvoicePaymentComponent} from './invoice_payment/invoice_payment.component';
 
 const routes: Routes = [
     {
@@ -76,6 +77,7 @@ const routes: Routes = [
             {path: 'addendumcharge/new', component: AddendumChargeComponent, data: {title: 'Addendum Charge'}},
 
             {path: 'invoice', component: InvoiceComponent, data: {title: 'Generate Invoice'}},
+            {path: 'invoice_payment', component: InvoicePaymentComponent, data: {title: 'Payment Invoice'}},
         ]
     }
 ];
