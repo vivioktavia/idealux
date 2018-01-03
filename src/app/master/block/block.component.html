@@ -10,17 +10,17 @@
                            <thead>
                             <tr>
                                 <th>Action</th>
+                                <th>Rt No</th>
                                 <th>Block No</th>
                                 <th>Description</th>
-                                <th>Rt No</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let block of blocks">
                                 <td><button type="button" (click)="callForm(block.id)" class="btn-link">Edit</button> | <button type="button" class="btn-link" (click)="saveDelete(block.id)">Delete</button></td>
+                                <td>{{ block.rtNo }}</td>
                                 <td>{{ block.blockNo }}</td>
                                 <td>{{ block.descs }}</td>
-                                <td>{{ block.rtNo }}</td>
                             </tr>
                         </tbody>
                     </table>
