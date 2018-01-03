@@ -41,6 +41,18 @@
                     <div class="card-body">
                         <div class="col-sm-12">
                             <div class="form-group">       
+                                <label>Rt No</label>
+                                <select  class="form-control" formControlName="rt">
+                                    <option *ngFor="let rt of rts"
+                                        [value]="rt.id" [selected]= "rt.id == block_form.get('rt').value">
+                                        {{rt.rtNo}}
+                                    </option>
+                                </select>                          
+                                <div *ngIf="block_form.get('rt').touched && block_form.get('rt').hasError('required')" class="alert alert-danger">
+                                    Rt is required.
+                                </div>
+                            </div>
+                            <div class="form-group">       
                                 <label>Block No</label>
                                 <input type="text" class="form-control" formControlName="blockNo">                            
                                 <div *ngIf="block_form.get('blockNo').touched && block_form.get('blockNo').hasError('required')" class="alert alert-danger">
@@ -52,18 +64,6 @@
                                 <input type="text" class="form-control" formControlName="descs">                            
                                 <div *ngIf="block_form.get('descs').touched && block_form.get('descs').hasError('required')" class="alert alert-danger">
                                     Descs is required.
-                                </div>
-                            </div>
-                            <div class="form-group">       
-                                <label>Rt No</label>
-                                <select  class="form-control" formControlName="rt">
-                                    <option *ngFor="let rt of rts"
-                                        [value]="rt.id" [selected]= "rt.id == block_form.get('rt').value">
-                                        {{rt.rtNo}}
-                                    </option>
-                                </select>                          
-                                <div *ngIf="block_form.get('rt').touched && block_form.get('rt').hasError('required')" class="alert alert-danger">
-                                    Rt is required.
                                 </div>
                             </div>
                         </div>
