@@ -1,0 +1,28 @@
+<form [formGroup]="debtorInquiry_form">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    <i class="fa fa-align-justify"></i> Payment
+                </div>
+                <div class="card-body">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Unit</label>
+                            <select class="form-group" ng-change="onItemChange($event)">
+                                <option *ngFor="let l of lots"
+                                    [value]="l">
+                                    {{l.lotNo}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    {{ debtorInquiry_form.get('lot').lotNo }}
+    <!--                     <div class="card-footer">
+                        <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-dot-circle-o"></i> View</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
