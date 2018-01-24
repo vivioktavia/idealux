@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, Response, Headers, RequestOptions, RequestMethod} from '@angular/http';
+import {Http, Response, Headers, RequestOptions, ResponseContentType} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -10,7 +10,7 @@ import {environment} from '../../environments/environment';
 @Injectable()
 
 export class ReportService {
-    private url: string = environment.BASE_URL + "/getinvsrptbyrtandperiode/";
+    private url: string = environment.BASE_URL + "/getpdftagihan/";
     private token: string = environment.token;
 
     constructor(private _http: Http) {}
@@ -29,11 +29,14 @@ export class ReportService {
         return Promise.reject(error.message || error);
     }
 
-    public getInvoiceReport(rt: string, startDate: string, endDate: string) {
-        let headers = new Headers({'Authorization': 'Token ' + this.token});
-        let options = new RequestOptions({headers: headers});
-        return this._http.get(this.url + '?rt=' + rt + '&startDate=' + startDate + '&endDate=' + endDate, options)
-            .map(this.extractData)
-    }
+//    public getInvoiceReport(rt: string, startDate: string, endDate: string) {
+//        let headers = new Headers({'Authorization': 'Token ' + this.token, 'Accept': 'application/pdf'});
+//        let options = new RequestOptions({headers: headers, responseType: ResponseContentType.Blob});
+//        return this._http.get(this.url + '?rt=' + rt + '&startDate=' + startDate + '&endDate=' + endDate, options)
+//            .map((res: any) => res);
+//    }
+      public getInvoiceReport(rt: string, startDate: string, endDate: string) {
+          window.location.href = this.url + '?rt=' + rt + '&startDate=' + startDate + '&endDate=' + endDate;
+      }
 
 }
