@@ -5,12 +5,14 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/toPromise'
 import {Invoice} from '../models/invoice';
+import {Alloc} from '../models/alloc';
 import {environment} from '../../environments/environment';
 
 @Injectable()
 
 export class InvoicePaymentService {
-    private url: string = environment.BASE_URL + "/paymentinv/";
+    private baseurl: string = environment.BASE_URL;
+    private url: string = this.baseurl + "/paymentinv/";
     private token: string = environment.token;
 
     constructor(private _http: Http) {}
@@ -36,5 +38,12 @@ export class InvoicePaymentService {
             data,
             options
         ).map(this.extractData);
+    }
+
+    getAllocsbyLot(lot): Observable<Alloc[]>{
+        let headers = new Headers({'Authorization': 'Token ' + this.token});
+        let options = new RequestOptions({headers: headers});
+        return this._http.get(this.baseurl + "/getallocsbylot/?lot=" + lot , options)
+            .map(this.extractData)
     }
 }

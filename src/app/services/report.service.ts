@@ -29,14 +29,14 @@ export class ReportService {
         return Promise.reject(error.message || error);
     }
 
-//    public getInvoiceReport(rt: string, startDate: string, endDate: string) {
-//        let headers = new Headers({'Authorization': 'Token ' + this.token, 'Accept': 'application/pdf'});
-//        let options = new RequestOptions({headers: headers, responseType: ResponseContentType.Blob});
-//        return this._http.get(this.url + '?rt=' + rt + '&startDate=' + startDate + '&endDate=' + endDate, options)
-//            .map((res: any) => res);
-//    }
-      public getInvoiceReport(rt: string, startDate: string, endDate: string) {
-          window.location.href = this.url + '?rt=' + rt + '&startDate=' + startDate + '&endDate=' + endDate;
-      }
+    public getInvoiceReport(rt: string, startDate: string, endDate: string) {
+        let headers = new Headers({'Authorization': 'Token ' + this.token, 'Accept': 'application/pdf', 'Access-Control-Allow-Headers': '*'});
+        let options = new RequestOptions({headers: headers, responseType: ResponseContentType.Blob});
+        return this._http.get(this.url + '?rt=' + rt + '&startDate=' + startDate + '&endDate=' + endDate, options)
+            .map((res: any) => res);
+    }
+//      public getInvoiceReport(rt: string, startDate: string, endDate: string) {
+//          window.location.href = this.url + '?rt=' + rt + '&startDate=' + startDate + '&endDate=' + endDate;
+//      }
 
 }

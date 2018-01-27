@@ -61,31 +61,31 @@ export class ReportInvoiceComponent implements OnInit, AfterViewInit {
         this.dtTrigger.next();
     }
 
-//    getReport(): void {
-//        this.reportService.getInvoiceReport(this.rtNo, this.startDate, this.endDate)
-//            .subscribe(data => {
-//                var mediaType = 'application/pdf';
-//                var blob = new Blob([data], {type: mediaType});
-//                // saveAs(blob, filename);
-//                var fileURL = URL.createObjectURL(blob);
-//                window.open(fileURL); // if you want to open it in new tab  
-//            },
-//            error => {
-//                console.log(error);
-//            });
-//    }
-    
-    getReport(): void {
-         this.reportService.getInvoiceReport(this.rtNo, this.startDate, this.endDate);
+    getReport():void{
+        this.reportService.getInvoiceReport(this.rtNo, this.startDate, this.endDate)
+            .subscribe(data => {
+                var mediaType = 'application/pdf';
+                var blob = new Blob([data], {type: mediaType});
+                // saveAs(blob, filename);
+                var fileURL = URL.createObjectURL(blob);
+                window.open(fileURL); // if you want to open it in new tab  
+            },
+            error => {
+                console.log(error);
+            });
     }
+    
+//    getReport(): void {
+//         this.reportService.getInvoiceReport(this.rtNo, this.startDate, this.endDate);
+//    }
 
     getRWList() {
-        this.rwResult = this.rwService.getRWList();
+        this.rwResult = this.rwService.getLists();
         this.rwResult.subscribe(val => {this.rws = val});
     }
 
     getRTList() {
-        this.rtResult = this.rtService.getRTList();
+        this.rtResult = this.rtService.getLists();
         this.rtResult.subscribe(val => {this.rts = val});
     }
 }
