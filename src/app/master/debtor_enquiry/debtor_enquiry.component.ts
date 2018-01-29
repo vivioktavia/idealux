@@ -74,22 +74,26 @@ export class DebtorEnquiryComponent extends BaseComponent implements OnInit {
 
   filterChanged(){
     this.lotService.getById(this.selected_lot).subscribe(lot => {
+      console.log(lot)
       this.lot = lot;
       for(let i = 0; i < lot.kks.length; i++) {
-        this.ktpService.getById(lot.kks[i].kkDetails[0].ktp).subscribe(data => {
-          let tenant = {
-            "no_kk": lot.kks[i].kkNo,
-            "relation": lot.kks[i].kkDetails[0].familyRelationDescs,
-            "nik": lot.kks[i].kkDetails[0].nik,
-            "name": data.name,
-            "religion": data.religionDescs,
-            "birth_date": data.birthDate
-          }
-          this.tenants.push(tenant)
-          if(this.tenants.length == lot.kks.length) {
-            this.dtTrigger.next();
-          }
-        });
+        var kk_details = lot.kks[i].kkDetails;
+        for(let j = 0; j < kk_details.length; j++) {
+          this.ktpService.getById(kk_details[j].ktp).subscribe(data => {
+            let tenant = {
+              "no_kk": lot.kks[i].kkNo,
+              "relation": kk_details[j].familyRelationDescs,
+              "nik": kk_details[j].nik,
+              "name": data.name,
+              "religion": data.religionDescs,
+              "birth_date": data.birthDate
+            }
+            this.tenants.push(tenant)
+            if(i == (lot.kks.length - 1)) {
+              this.dtTrigger.next();
+            }
+          });
+        }
       }
 
       this.getInvoice();
