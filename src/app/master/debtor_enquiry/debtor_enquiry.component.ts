@@ -1,6 +1,5 @@
 import {BaseComponent} from '../base.component';
-import {IBaseInterface} from '../base.interface';
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, QueryList, ViewChild, ViewChildren} from '@angular/core';
 import {Router, ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
 import {FormGroup, FormControl, Validators, FormBuilder} from '@angular/forms';
@@ -13,13 +12,14 @@ import {InvoiceService} from '../../services/invoice.service';
 import {LotService} from '../../services/lot.service';
 import {Tenant} from "../../models/tenant";
 import {KtpService} from "../../services/ktp.service";
+import {DataTableDirective} from "angular-datatables";
 
 @Component({
   templateUrl: 'debtor_enquiry.component.html',
   providers: [InvoicePaymentService, InvoiceService, LotService, KtpService]
 })
 
-export class DebtorEnquiryComponent extends BaseComponent implements OnInit {
+export class DebtorEnquiryComponent extends BaseComponent implements OnInit, AfterViewInit  {
 
   debtorInquiry_form: FormGroup;
   lotResult: Observable<Lot[]>;
@@ -30,6 +30,14 @@ export class DebtorEnquiryComponent extends BaseComponent implements OnInit {
   tenants: Tenant[] = [];
   tag: string ="tenant";
   selected_lot: number;
+
+  @ViewChild(DataTableDirective)
+  datatableElement: DataTableDirective;
+
+  @ViewChildren(DataTableDirective)
+  dtElements: QueryList<DataTableDirective>;
+
+  dtOptions2: DataTables.Settings[] = [];
 
   constructor(
     private invoicePaymentService: InvoicePaymentService,
@@ -57,6 +65,12 @@ export class DebtorEnquiryComponent extends BaseComponent implements OnInit {
     this.getLots();
   }
 
+  ngAfterViewInit(): void {
+    this.dtTrigger.next()
+    this.dtTrigger_reserved.next()
+    this.dtTrigger_reserved2.next()
+  }
+
   getLots() {
     this.lotResult = this.lotService.getLists();
     this.lotResult.subscribe(val => {this.lots = val});
@@ -73,9 +87,21 @@ export class DebtorEnquiryComponent extends BaseComponent implements OnInit {
   }
 
   filterChanged(){
+    this.tenants = [];
+    this.invoices = [];
+    this.allocs = [];
+
+    console.log(this.dtElements);
+    this.dtElements.forEach((dtElement: DataTableDirective, index: number) => {
+      dtElement.dtInstance.then((dtInstance: any) => {
+        dtInstance.destroy();
+      });
+    });
     this.lotService.getById(this.selected_lot).subscribe(lot => {
-      console.log(lot)
       this.lot = lot;
+      if(lot.kks.length == 0) {
+        this.dtTrigger.next(true);
+      }
       for(let i = 0; i < lot.kks.length; i++) {
         var kk_details = lot.kks[i].kkDetails;
         for(let j = 0; j < kk_details.length; j++) {
@@ -90,7 +116,7 @@ export class DebtorEnquiryComponent extends BaseComponent implements OnInit {
             }
             this.tenants.push(tenant)
             if(i == (lot.kks.length - 1)) {
-              this.dtTrigger.next();
+              this.dtTrigger.next(true);
             }
           });
         }
@@ -113,8 +139,10 @@ export class DebtorEnquiryComponent extends BaseComponent implements OnInit {
     if(this.lot){
       this.invoiceService.getInvoicesbyLot(this.lot.id).subscribe(val => {
         this.invoices = val;
+        // this.dtTrigger.next(true);
         this.dtTrigger_reserved.next()
       });
+
     }
   }
 
@@ -122,8 +150,10 @@ export class DebtorEnquiryComponent extends BaseComponent implements OnInit {
     if(this.lot){
       this.invoicePaymentService.getAllocsbyLot(this.lot.id).subscribe(val => {
         this.allocs = val;
-        this.dtTrigger_reserved2.next()
+        // this.dtTrigger_reserved2.next()
+        this.dtTrigger_reserved2.next(true)
       });
+
     }
   }
 }
