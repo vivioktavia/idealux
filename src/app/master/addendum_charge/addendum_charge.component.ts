@@ -86,8 +86,7 @@ export class AddendumChargeComponent extends BaseTrxComponent implements OnInit,
             this.calcMethodOptions = CalcMethodOptions;
         } else {
             this.result = this.addendumChargeService.getLists();
-
-            this.result.subscribe(val => {console.log(val); this.addendumCharges = val; this.dtTrigger.next()});
+            this.result.subscribe(val => {this.addendumCharges = val; this.dtTrigger.next()});
         }
     }
 
@@ -109,6 +108,7 @@ export class AddendumChargeComponent extends BaseTrxComponent implements OnInit,
     saveAddItem(): void {
         this.addendumChargeService.save(this.addendum_charge_form.value).subscribe(
           success => {
+              this.addendumChargeService.getLists().subscribe(val => {this.addendumCharges = val; this.dtTrigger.next()})
             this.onSuccess("Data Anda Berhasil Di simpan");
           },
           error=> {

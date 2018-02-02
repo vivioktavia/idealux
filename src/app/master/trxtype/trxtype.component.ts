@@ -84,6 +84,7 @@ export class TrxtypeComponent extends BaseTrxComponent implements OnInit, IBaseT
     saveAddItem(): void {
         this.trxTypeService.save(this.trxtype_form.value).subscribe(
           success => {
+              this.trxTypeService.getLists().subscribe(val => {this.trxtypes = val; this.dtTrigger.next()})
             this.onSuccess("Data Anda Berhasil Di simpan");
           },
           error=> {

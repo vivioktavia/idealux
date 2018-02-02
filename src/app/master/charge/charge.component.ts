@@ -101,6 +101,7 @@ export class ChargeComponent extends BaseTrxComponent implements OnInit, IBaseTr
     saveAddItem(): void {
         this.chargeService.save(this.charge_form.value).subscribe(
           success => {
+              this.chargeService.getLists().subscribe(val => {this.charges = val; this.dtTrigger.next()})
             this.onSuccess("Data Anda Berhasil Di simpan");
           },
           error=> {

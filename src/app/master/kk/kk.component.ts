@@ -120,6 +120,7 @@ export class KKComponent extends BaseTrxComponent implements OnInit, IBaseTrxInt
         kk.kkDetails = this.kk_details;
         this.kkService.save(kk).subscribe(
           success => {
+              this.kkService.getLists().subscribe(val => {this.kks = val; this.dtTrigger.next()})
             this.onSuccess("Data Anda Berhasil Di simpan");
           },
           error=> {

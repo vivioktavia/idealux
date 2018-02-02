@@ -60,6 +60,7 @@ export class GroupComponent extends BaseTrxComponent implements OnInit, IBaseTrx
     saveAddItem(): void {
         this.groupService.save(this.group_form.value).subscribe(
           success => {
+              this.groupService.getLists().subscribe(val => {this.groups = val; this.dtTrigger.next()})
             this.onSuccess("Data Anda Berhasil Di simpan");
           },
           error=> {

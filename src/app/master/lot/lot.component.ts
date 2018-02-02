@@ -80,6 +80,7 @@ export class LotComponent extends BaseTrxComponent implements OnInit, IBaseTrxIn
     saveAddItem(): void {
         this.lotService.save(this.lot_form.value).subscribe(
           success => {
+              this.lotService.getLists().subscribe(val => {this.lots = val; this.dtTrigger.next()})
             this.onSuccess("Data Anda Berhasil Di simpan");
           },
           error=> {

@@ -91,7 +91,7 @@ export class KtpComponent extends BaseTrxComponent implements OnInit, IBaseTrxIn
             this.nationalityOptions = NationalityOptions;
         } else {
             this.result = this.ktpService.getLists();
-            this.result.subscribe(val => {console.log(this.ktps); this.ktps = val; this.dtTrigger.next()});
+            this.result.subscribe(val => {this.ktps = val; this.dtTrigger.next()});
         }
     }
 
@@ -103,6 +103,7 @@ export class KtpComponent extends BaseTrxComponent implements OnInit, IBaseTrxIn
     saveAddItem(): void {
         this.ktpService.save(this.ktp_form.value).subscribe(
           success => {
+              this.ktpService.getLists().subscribe(val => {this.ktps = val; this.dtTrigger.next()})
             this.onSuccess("Data Anda Berhasil Di simpan");
           },
           error=> {
