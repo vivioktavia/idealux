@@ -76,7 +76,7 @@ export class BlockComponent extends BaseTrxComponent implements OnInit, IBaseTrx
     saveAddItem(): void {
         this.blockService.save(this.block_form.value).subscribe(
           success => {
-              this.blockService.getLists().subscribe(val => {this.blocks = val; this.dtTrigger.next()})
+              this.blockService.getLists().subscribe(val => {this.blocks = val})
             this.onSuccess("Data Anda Berhasil Di simpan");
           },
           error=> {

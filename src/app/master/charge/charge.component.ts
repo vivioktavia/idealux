@@ -126,7 +126,7 @@ export class ChargeComponent extends BaseTrxComponent implements OnInit, IBaseTr
         if (confirm("Apakah Anda yakin akan menghapus data")) {
             this.chargeService.delete(id).subscribe(
               success => {
-                this.chargeService.getLists().subscribe(val => {this.charges = val; this.dtTrigger.next()})
+                this.chargeService.getLists().subscribe(val => {this.charges = val})
                 this.onSuccess("Data Anda Berhasil Di hapus");
               },
               error=> {

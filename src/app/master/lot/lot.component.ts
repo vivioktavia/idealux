@@ -105,7 +105,7 @@ export class LotComponent extends BaseTrxComponent implements OnInit, IBaseTrxIn
         if (confirm("Apakah Anda yakin akan menghapus data")) {
             this.lotService.delete(id).subscribe(
               success => {
-                this.lotService.getLists().subscribe(val => {this.lots = val; this.dtTrigger.next()})
+                this.lotService.getLists().subscribe(val => {this.lots = val})
                 this.onSuccess("Data Anda Berhasil Di hapus");
               },
               error=> {

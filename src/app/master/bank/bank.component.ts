@@ -89,7 +89,7 @@ export class BankComponent extends BaseTrxComponent implements OnInit, IBaseTrxI
         if (confirm("Apakah Anda yakin akan menghapus data")) {
             this.bankService.delete(id).subscribe(
                 success => {
-                    this.bankService.getLists().subscribe(val => {this.banks = val; this.dtTrigger.next()})
+                    this.bankService.getLists().subscribe(val => {this.banks = val})
                     this.onSuccess("Data Anda Berhasil Di hapus");
                 },
                 error => {

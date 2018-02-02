@@ -133,7 +133,7 @@ export class AddendumChargeComponent extends BaseTrxComponent implements OnInit,
         if (confirm("Apakah Anda yakin akan menghapus data")) {
             this.addendumChargeService.delete(id).subscribe(
               success => {
-                this.addendumChargeService.getLists().subscribe(val => {this.addendumCharges = val; this.dtTrigger.next()})
+                this.addendumChargeService.getLists().subscribe(val => {this.addendumCharges = val})
                 this.onSuccess("Data Anda Berhasil Di hapus");
               },
               error=> {

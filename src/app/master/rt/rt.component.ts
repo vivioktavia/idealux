@@ -90,7 +90,7 @@ export class RTComponent extends BaseTrxComponent implements OnInit, IBaseTrxInt
     saveUpdateItem(url): void {
         this.rtService.update(url, this.rt_form.value).subscribe(
             success => {
-                this.rtService.getLists().subscribe(val => {this.rts = val; this.dtTrigger.next()})
+                this.rtService.getLists().subscribe(val => {this.rts = val})
                 this.onSuccess("Data Anda Berhasil Di simpan");
             },
             error => {
@@ -103,7 +103,7 @@ export class RTComponent extends BaseTrxComponent implements OnInit, IBaseTrxInt
         if (confirm("Apakah Anda yakin akan menghapus data")) {
             this.rtService.delete(url).subscribe(
                 success => {
-                    this.rtService.getLists().subscribe(val => {this.rts = val; this.dtTrigger.next()})
+                    this.rtService.getLists().subscribe(val => {this.rts = val})
                     this.onSuccess("Data Anda Berhasil Di hapus");
                 },
                 error => {

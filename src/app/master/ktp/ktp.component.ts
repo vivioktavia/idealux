@@ -128,7 +128,7 @@ export class KtpComponent extends BaseTrxComponent implements OnInit, IBaseTrxIn
         if (confirm("Apakah Anda yakin akan menghapus data")) {
             this.ktpService.delete(id).subscribe(
               success => {
-                this.ktpService.getLists().subscribe(val => {this.ktps = val; this.dtTrigger.next()})
+                this.ktpService.getLists().subscribe(val => {this.ktps = val})
                 this.onSuccess("Data Anda Berhasil Di hapus");
               },
               error=> {

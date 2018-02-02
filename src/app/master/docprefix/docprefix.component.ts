@@ -97,7 +97,7 @@ export class DocprefixComponent extends BaseTrxComponent implements OnInit, IBas
         if (confirm("Apakah Anda yakin akan menghapus data")) {
             this.docprefixService.delete(id).subscribe(
               success => {
-                this.docprefixService.getLists().subscribe(val => {this.docprefixs = val; this.dtTrigger.next()})
+                this.docprefixService.getLists().subscribe(val => {this.docprefixs = val})
                 this.onSuccess("Data Anda Berhasil Di hapus");
               },
               error=> {

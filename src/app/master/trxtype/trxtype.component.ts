@@ -109,7 +109,7 @@ export class TrxtypeComponent extends BaseTrxComponent implements OnInit, IBaseT
         if (confirm("Apakah Anda yakin akan menghapus data")) {
             this.trxTypeService.delete(id).subscribe(
               success => {
-                this.trxTypeService.getLists().subscribe(val => {this.trxtypes = val; this.dtTrigger.next()})
+                this.trxTypeService.getLists().subscribe(val => {this.trxtypes = val})
                 this.onSuccess("Data Anda Berhasil Di hapus");
               },
               error=> {
