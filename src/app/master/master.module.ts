@@ -23,6 +23,7 @@ import {AddendumChargeComponent} from './addendum_charge/addendum_charge.compone
 import {InvoiceComponent} from './invoice/invoice.component';
 import {InvoicePaymentComponent} from './invoice_payment/invoice_payment.component';
 import {DebtorEnquiryComponent} from './debtor_enquiry/debtor_enquiry.component';
+import {CashbookComponent} from "./cashbook/cashbook.component";
 
 @NgModule({
     imports: [
@@ -51,7 +52,8 @@ import {DebtorEnquiryComponent} from './debtor_enquiry/debtor_enquiry.component'
         AddendumChargeComponent,
         InvoiceComponent,
         InvoicePaymentComponent,
-        DebtorEnquiryComponent
+        DebtorEnquiryComponent,
+        CashbookComponent
     ]
 })
 export class MasterModule {}
